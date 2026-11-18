@@ -179,6 +179,25 @@ npm start
 
 Open **http://localhost:4747**. For development, use `npm run dev` (server + Vite with hot reload).
 
+**Option C: Windows desktop app (Rust / Tauri)**
+
+Build a native `.exe` that starts the Habblaud server and opens the office in a WebView window:
+
+```bash
+npm install
+npm run build
+npm --prefix desktop install
+npm run desktop:build
+```
+
+Artifacts:
+
+- portable: `desktop/src-tauri/target/release/habblaud-desktop.exe`
+- installer: `desktop/src-tauri/target/release/bundle/nsis/Habblaud_*_x64-setup.exe`
+- MSI: `desktop/src-tauri/target/release/bundle/msi/Habblaud_*_x64_en-US.msi`
+
+Requires Rust (`rustc` / `cargo`), Node.js 22.12+ on PATH, and WebView2. Details: [`desktop/README.md`](desktop/README.md).
+
 Now open Claude Code in any project and watch your agent arrive by elevator. 🎉
 
 ### 3. Install the Habblaud mod in Claude Code (recommended)
@@ -1041,6 +1060,8 @@ metadata (letter, email, organization) is read on the host by `docker:up` and pa
 | `npm run dev:client` | Vite only, at http://localhost:5173 (open it with `?mock=1`; `/api` is proxied to port 4747). |
 | `npm run demo` | `npm run dev` with demo mode on. |
 | `npm run build` / `npm start` | Builds and runs the production version. |
+| `npm run desktop:dev` | Rust/Tauri desktop shell in development (starts server + WebView). |
+| `npm run desktop:build` | Builds `habblaud-desktop.exe` plus NSIS/MSI installers. |
 | `npm test` | Tests (Vitest). |
 | `npm run typecheck` | Type checking for the client, the server and the scripts. |
 | `claude plugin test mod/habblaud` | Mod tests (no session, account or network); same for `mod/habblaud-mensagens`. |

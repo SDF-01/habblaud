@@ -6,5 +6,10 @@ dist/
 docker-compose.override.yml
 scripts/assets/.cache/
 
+# Tauri / Rust desktop shell
+desktop/node_modules/
+desktop/src-tauri/target/
+desktop/src-tauri/resources/habblaud/
+
 # Configurações locais do Claude Code e caches de geração
 .claude/

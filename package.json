@@ -45,6 +45,10 @@
     "cursor:install": "tsx scripts/cursor-install.ts install",
     "cursor:uninstall": "tsx scripts/cursor-install.ts uninstall",
     "cursor:status": "tsx scripts/cursor-install.ts status",
+    "desktop:icons": "node scripts/desktop-make-icons.mjs",
+    "desktop:prepare": "node scripts/desktop-prepare.mjs --build",
+    "desktop:dev": "npm run desktop:prepare && npm --prefix desktop run dev",
+    "desktop:build": "npm run desktop:prepare && npm --prefix desktop run build",
     "remote:setup": "tsx scripts/remote-setup.ts",
     "remote:mdns": "tsx scripts/remote-mdns.ts",
     "release": "tsx scripts/release.ts"

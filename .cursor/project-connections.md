@@ -7,4 +7,4 @@
 - Preview URL rules: n/a
 - Linked services: Cursor local plugin at `~/.cursor/plugins/local/habblaud`
 - Protected files: `.env`, `~/.habblaud/*` secrets, account credentials
-- Project specific deploy behavior: Habblaud runs locally; use `npm run cursor:install` and `npm start` / Windows Startup shortcut. Do not treat preview URLs as production.
+- Project specific deploy behavior: Habblaud runs locally; use `npm run cursor:install` and `npm start` / Windows Startup shortcut, or `npm run desktop:build` for the Rust/Tauri `.exe`. Do not treat preview URLs as production.
