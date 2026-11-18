@@ -28,7 +28,8 @@
     ],
     "stop": [
       {
-        "command": "node ./scripts/ensure-and-hook.mjs"
+        "command": "node ./scripts/ensure-and-hook.mjs",
+        "loop_limit": 20
       }
     ],
     "subagentStart": [
@@ -37,6 +38,12 @@
       }
     ],
     "subagentStop": [
+      {
+        "command": "node ./scripts/ensure-and-hook.mjs",
+        "loop_limit": 20
+      }
+    ],
+    "workspaceOpen": [
       {
         "command": "node ./scripts/ensure-and-hook.mjs"
       }

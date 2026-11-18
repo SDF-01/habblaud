@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Habblaud Cursor hook: keep the office server running and forward agent events.
+// Habblaud Cursor hook: keep the office server running, forward agent events, and deliver
+// office messages into the Cursor chat via stop.followup_message.
 // Fail-open: never block the Cursor agent. Speaks only to 127.0.0.1.
 import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync, openSync, readFileSync } from 'node:fs';
@@ -10,12 +11,13 @@ import { fileURLToPath } from 'node:url';
 const DEFAULT_PORT = 4747;
 const CONFIG_FILE = 'cursor-hook.json';
 const EVENT_TIMEOUT_MS = 1_500;
+const INBOX_TIMEOUT_MS = 2_000;
 const ENSURE_TIMEOUT_MS = 8_000;
 const STDIN_TIMEOUT_MS = 5_000;
 const MAX_STDIN = 2 * 1024 * 1024;
 const MAX_STRING = 8_000;
+const ACCOUNT = '.cursor';
 
-const pluginRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const debug = process.env.HABBLAUD_HOOK_DEBUG === '1' ? (msg) => process.stderr.write(`[habblaud-cursor] ${msg}\n`) : () => {};
 
 function isObject(v) {
@@ -28,6 +30,10 @@ function validPort(p) {
 
 function homeOf(env = process.env) {
   return env.HOME || env.USERPROFILE || homedir();
+}
+
+function str(v) {
+  return typeof v === 'string' && v.trim() ? v.trim() : undefined;
 }
 
 function readConfig(env = process.env) {
@@ -69,11 +75,14 @@ async function readStdin() {
   return new Promise((resolvePromise) => {
     const chunks = [];
     let size = 0;
-    const timer = setTimeout(() => finish(Buffer.concat(chunks).toString('utf8')), STDIN_TIMEOUT_MS);
+    let done = false;
     const finish = (text) => {
+      if (done) return;
+      done = true;
       clearTimeout(timer);
       resolvePromise(text);
     };
+    const timer = setTimeout(() => finish(Buffer.concat(chunks).toString('utf8')), STDIN_TIMEOUT_MS);
     process.stdin.on('data', (c) => {
       size += c.length;
       if (size <= MAX_STDIN) chunks.push(c);
@@ -125,11 +134,9 @@ function startDetached(rootDir, port) {
   const dist = join(rootDir, 'dist', 'server', 'index.js');
   const entry = existsSync(dist) ? dist : join(rootDir, 'server', 'index.ts');
   const useTsx = entry.endsWith('.ts');
-  const cmd = useTsx ? process.execPath : process.execPath;
-  const args = useTsx
-    ? [join(rootDir, 'node_modules', 'tsx', 'dist', 'cli.mjs'), entry]
-    : [entry];
-  if (useTsx && !existsSync(args[0])) {
+  const tsxCli = join(rootDir, 'node_modules', 'tsx', 'dist', 'cli.mjs');
+  const args = useTsx ? [tsxCli, entry] : [entry];
+  if (useTsx && !existsSync(tsxCli)) {
     debug('tsx missing; run npm install && npm run build in the Habblaud repo');
     return false;
   }
@@ -139,11 +146,9 @@ function startDetached(rootDir, port) {
   }
   const logDir = join(homeOf(), '.habblaud', 'logs');
   mkdirSync(logDir, { recursive: true });
-  const out = join(logDir, 'server.out.log');
-  const err = join(logDir, 'server.err.log');
-  const outFd = openSync(out, 'a');
-  const errFd = openSync(err, 'a');
-  const child = spawn(cmd, args, {
+  const outFd = openSync(join(logDir, 'server.out.log'), 'a');
+  const errFd = openSync(join(logDir, 'server.err.log'), 'a');
+  const child = spawn(process.execPath, args, {
     cwd: rootDir,
     detached: true,
     stdio: ['ignore', outFd, errFd],
@@ -184,10 +189,6 @@ function normalizeEvent(raw, hookName) {
   return clipDeep(event);
 }
 
-function str(v) {
-  return typeof v === 'string' && v.trim() ? v.trim() : undefined;
-}
-
 function detectHookName(input, argv) {
   return (
     str(input?.hook_event_name) ||
@@ -196,6 +197,31 @@ function detectHookName(input, argv) {
     str(argv[2]) ||
     'sessionStart'
   );
+}
+
+function isStopLike(hookName) {
+  const lower = hookName.toLowerCase();
+  return lower === 'stop' || lower === 'subagentstop';
+}
+
+async function pollInbox(port, session) {
+  const res = await fetchJson(
+    `http://127.0.0.1:${port}/api/mod/inbox`,
+    { session, account: ACCOUNT },
+    INBOX_TIMEOUT_MS,
+  );
+  const messages = Array.isArray(res.json?.messages) ? res.json.messages : [];
+  return messages.filter((m) => m && typeof m.id === 'string' && typeof m.text === 'string');
+}
+
+async function ackInbox(port, session, results) {
+  if (!results.length) return;
+  await fetchJson(`http://127.0.0.1:${port}/api/mod/inbox/ack`, { session, results }, INBOX_TIMEOUT_MS);
+}
+
+function combineMessages(messages) {
+  if (messages.length === 1) return messages[0].text;
+  return messages.map((m, i) => `[Habblaud ${i + 1}/${messages.length}]\n${m.text}`).join('\n\n');
 }
 
 async function main() {
@@ -208,7 +234,8 @@ async function main() {
     raw = {};
   }
   const hookName = detectHookName(raw, process.argv);
-  // Keep Habblaud up on every agent session.
+  const out = {};
+
   try {
     await ensureRunning(cfg);
   } catch (err) {
@@ -218,14 +245,33 @@ async function main() {
   const event = normalizeEvent(raw, hookName);
   if (event.session_id) {
     try {
-      await fetchJson(`http://127.0.0.1:${cfg.port}/api/cursor/events`, { account: '.cursor', event }, EVENT_TIMEOUT_MS);
+      await fetchJson(`http://127.0.0.1:${cfg.port}/api/cursor/events`, { account: ACCOUNT, event }, EVENT_TIMEOUT_MS);
     } catch (err) {
       debug(`event post failed: ${err?.message || err}`);
     }
+
+    // Presence + delivery: every hook marks canMessage; stop injects pending office messages.
+    try {
+      const messages = await pollInbox(cfg.port, event.session_id);
+      if (messages.length && isStopLike(hookName)) {
+        const status = str(raw.status) || 'completed';
+        // Only auto-continue on completed stops (same rule as Cursor subagentStop docs).
+        if (status === 'completed' || hookName.toLowerCase() === 'stop') {
+          out.followup_message = combineMessages(messages);
+          await ackInbox(
+            cfg.port,
+            event.session_id,
+            messages.map((m) => ({ id: m.id, ok: true })),
+          );
+          debug(`delivered ${messages.length} office message(s) via followup_message`);
+        }
+      }
+    } catch (err) {
+      debug(`inbox failed: ${err?.message || err}`);
+    }
   }
 
-  // Fail open: empty JSON object is fine for observe-only hooks.
-  process.stdout.write('{}\n');
+  process.stdout.write(`${JSON.stringify(out)}\n`);
 }
 
 main().catch(() => {

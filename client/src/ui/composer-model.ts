@@ -8,6 +8,8 @@ import { tr } from '../../../shared/i18n';
 
 /** Dica para quem tem o recurso ligado, mas a sessão do agente não está com o plugin conectado. */
 export const PLUGIN_HINT = tr('Para mandar mensagens daqui: npm run mod:install (plugin habblaud-mensagens)');
+/** Cursor: o plugin local entrega no stop; se a caixa pedir isto, a sessão ainda não entrou no escritório. */
+export const CURSOR_PLUGIN_HINT = tr('Para mandar mensagens daqui: deixe o plugin Habblaud ativo no Cursor (npm run cursor:install e Developer: Reload Window)');
 /** A mesma dica para um agente do Codex sem entregador (no modo Node o próprio servidor entrega). */
 export const CODEX_BRIDGE_HINT = tr('Para mandar mensagens ao Codex: com o Habblaud no Docker, deixe npm run codex:bridge rodando; no modo Node funciona sozinho');
 
@@ -32,17 +34,27 @@ export function composerMode(agent: AgentInfo | undefined, env: ComposerEnv): Co
   if (agent?.kind === 'sub') return { kind: 'off', text: tr('Subagentes não recebem mensagens: escreva para o agente principal') };
   if (!agent || agent.status === 'offline' || agent.status === 'done') return { kind: 'off', text: tr('Sessão encerrada') };
   const codex = agent.provider === 'codex';
-  if (!env.enabled) return { kind: 'off', text: codex ? tr('Para responder, use o Codex') : tr('Para responder, use o terminal do Claude Code') };
+  const cursor = agent.provider === 'cursor';
+  if (!env.enabled) {
+    return {
+      kind: 'off',
+      text: codex ? tr('Para responder, use o Codex') : cursor ? tr('Para responder, use o chat do Cursor') : tr('Para responder, use o terminal do Claude Code'),
+    };
+  }
   if (!env.local) return { kind: 'off', text: tr('Para mandar mensagens por aqui, abra o Habblaud por http://localhost (ou 127.0.0.1)') };
-  if (!agent.canMessage) return { kind: 'hint', text: codex ? CODEX_BRIDGE_HINT : PLUGIN_HINT };
+  if (!agent.canMessage) return { kind: 'hint', text: codex ? CODEX_BRIDGE_HINT : cursor ? CURSOR_PLUGIN_HINT : PLUGIN_HINT };
   return { kind: 'ready' };
 }
 
 /** Dica embaixo da caixa (gaveta): como a mensagem entra na sessão. */
 export function composerTip(provider: Provider = 'claude'): string {
-  return provider === 'codex'
-    ? tr('Entra na fila da sessão e vira o próximo prompt quando o Codex terminar o que está fazendo. Enter manda; Shift+Enter quebra a linha.')
-    : tr('Entra na sessão como se você tivesse digitado. Enter manda; Shift+Enter quebra a linha.');
+  if (provider === 'codex') {
+    return tr('Entra na fila da sessão e vira o próximo prompt quando o Codex terminar o que está fazendo. Enter manda; Shift+Enter quebra a linha.');
+  }
+  if (provider === 'cursor') {
+    return tr('Entra no chat do Cursor no próximo stop do agente (se ele estiver ocioso, mande qualquer coisa no Cursor ou espere o próximo turno). Enter manda; Shift+Enter quebra a linha.');
+  }
+  return tr('Entra na sessão como se você tivesse digitado. Enter manda; Shift+Enter quebra a linha.');
 }
 
 /** O que sai da caixa: o texto como foi digitado, sem os espaços e linhas em branco do fim. */
@@ -86,11 +98,16 @@ export const DELIVERED_SHOW_MS = 12_000;
 export function sendStatusText(s: SendState | undefined, now: number, provider: Provider = 'claude'): string {
   if (!s) return '';
   const codex = provider === 'codex';
+  const cursor = provider === 'cursor';
   switch (s.phase) {
     case 'sending':
       return tr('Enviando…');
     case 'queued':
-      return codex ? tr('Na fila: entregando ao Codex…') : tr('Na fila: esperando a sessão buscar a mensagem…');
+      return codex
+        ? tr('Na fila: entregando ao Codex…')
+        : cursor
+          ? tr('Na fila: entra no Cursor no próximo stop do agente…')
+          : tr('Na fila: esperando a sessão buscar a mensagem…');
     case 'sent':
       return tr('Entregando à sessão…');
     case 'delivered':
@@ -99,11 +116,17 @@ export function sendStatusText(s: SendState | undefined, now: number, provider: 
       if (now - s.at >= DELIVERED_SHOW_MS) return '';
       return codex
         ? tr('Entregue ✓ na fila da sessão: entra quando o Codex terminar o que está fazendo (até ~10 s)')
-        : tr('Entregue ✓ (se o agente estiver ocupado, entra quando ele terminar)');
+        : cursor
+          ? tr('Entregue ✓ no chat do Cursor')
+          : tr('Entregue ✓ (se o agente estiver ocupado, entra quando ele terminar)');
     case 'rejected':
       return tr('Não foi possível mandar: {0}', [s.error ?? tr('erro desconhecido')]);
     case 'failed':
       return tr('Não foi entregue: {0}', [s.error ?? tr('erro desconhecido')]);
+    default: {
+      const _exhaustive: never = s.phase;
+      return _exhaustive;
+    }
   }
 }
 
@@ -120,9 +143,12 @@ export function pollDelay(elapsed: number): number {
 export const LOST_ERROR = tr('o Habblaud não conhece mais esta mensagem (ele reiniciou?)');
 export const TIMEOUT_ERROR = tr('sem notícia da entrega: confira no terminal do Claude Code');
 export const CODEX_TIMEOUT_ERROR = tr('sem notícia da entrega: confira no Codex');
+export const CURSOR_TIMEOUT_ERROR = tr('sem notícia da entrega: confira no chat do Cursor (a mensagem entra no próximo stop)');
 export const OFFLINE_ERROR = tr('não foi possível falar com o Habblaud');
 
 /** Prazo da consulta acabou sem notícia: onde conferir. */
 export function timeoutError(provider: Provider = 'claude'): string {
-  return provider === 'codex' ? CODEX_TIMEOUT_ERROR : TIMEOUT_ERROR;
+  if (provider === 'codex') return CODEX_TIMEOUT_ERROR;
+  if (provider === 'cursor') return CURSOR_TIMEOUT_ERROR;
+  return TIMEOUT_ERROR;
 }

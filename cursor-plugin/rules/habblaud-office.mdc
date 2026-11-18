@@ -7,6 +7,7 @@ Habblaud is installed as a Cursor plugin and should stay running while you work.
 
 - Office UI: http://localhost:4747
 - Cursor agent sessions appear as characters with a CURSOR badge
-- The Habblaud server is kept alive by plugin hooks on session start and tool use
-- Do not treat Habblaud as a remote service; it only talks to 127.0.0.1 on this machine
-- If the office is down, tell the user to run `npm run cursor:install` and `npm start` in the Habblaud repo, or open http://localhost:4747 after install
+- The Habblaud server is kept alive by plugin hooks and user hooks on session start, workspace open, and tool use
+- Messages typed in the Habblaud office are delivered into this Cursor chat on the next agent stop (followup_message)
+- Do not tell the user to run `npm run mod:install` for Cursor messaging; that is Claude Code only. For Cursor use `npm run cursor:install`
+- If the office is down, tell the user to run `npm run cursor:install` in the Habblaud repo, or open http://localhost:4747 after install

@@ -42,17 +42,21 @@ export const MAX_OPEN = 5;
 export const INBOX_BATCH = 5;
 
 export const ERR_NOT_FETCHED = tr('a sessão não buscou a mensagem: o plugin habblaud-mensagens está instalado e a sessão aberta?');
+export const ERR_CURSOR_NOT_FETCHED = tr('a sessão do Cursor não buscou a mensagem: o plugin Habblaud está ativo nesta janela? (Developer: Reload Window)');
 export const ERR_NOT_CONFIRMED = tr('a sessão não confirmou a entrega');
 export const ERR_GONE = tr('o agente saiu do escritório');
 export const ERR_REFUSED = tr('a sessão não aceitou a mensagem');
 export const ERR_SESSION_CHANGED = tr('a conversa do agente mudou (/clear ou /resume) antes da entrega');
 export const ERR_CODEX_UNAVAILABLE =
   tr('não há como entregar ao Codex agora: rode o Habblaud fora do Docker com o `codex` no PATH (ou HABBLAUD_CODEX_BIN) ou, no Docker, deixe o npm run codex:bridge rodando no Mac');
+export const ERR_CURSOR_UNAVAILABLE = tr('a sessão do Cursor não está no escritório (abra um agente no Cursor com o plugin Habblaud instalado)');
 export const ERR_CODEX_NOT_FETCHED = tr('o auxiliar do Codex não buscou a mensagem: o npm run codex:bridge está rodando no Mac?');
 export const ERR_CODEX_SLOW = tr('o Codex demorou demais com as mensagens anteriores a este agente');
 export const ERR_CODEX_NOT_CONFIRMED = tr('o auxiliar do Codex não confirmou a entrega');
 export const ERR_CODEX_HOME = tr('a pasta da conta do Codex deste agente é desconhecida');
 export const ERR_CODEX_REFUSED = tr('o codex queue não aceitou a mensagem');
+/** Fila do Cursor pode esperar o próximo stop do agente (ele ocioso no chat). */
+export const CURSOR_QUEUED_TIMEOUT_MS = 10 * 60_000;
 
 const ERROR_MAX = 300;
 const ID_MAX = 300;
@@ -152,7 +156,11 @@ const isFinal = (e: Entry) => e.msg.status === 'delivered' || e.msg.status === '
 function unavailableReason(a: AgentInfo, reachable: boolean): string | undefined {
   if (a.kind !== 'main') return tr('subagentes não recebem mensagens: mande para o agente principal');
   if (!present(a)) return tr('o agente já saiu do escritório');
-  if (!reachable) return a.provider === 'codex' ? ERR_CODEX_UNAVAILABLE : tr('a sessão não está com o plugin habblaud-mensagens conectado (npm run mod:install)');
+  if (!reachable) {
+    if (a.provider === 'codex') return ERR_CODEX_UNAVAILABLE;
+    if (a.provider === 'cursor') return ERR_CURSOR_UNAVAILABLE;
+    return tr('a sessão não está com o plugin habblaud-mensagens conectado (npm run mod:install)');
+  }
   return undefined;
 }
 
@@ -228,18 +236,25 @@ export class MessageRegistry {
 
   /**
    * Agentes principais presentes que recebem mensagens agora: os do Claude Code cuja sessão perguntou pela caixa de
-   * entrada há pouco e os do Codex, se há entregador. É o que o Office põe no snapshot.
+   * entrada há pouco, os do Cursor presentes no escritório (o plugin entrega no stop) e os do Codex, se há entregador.
    */
   reachable(): Set<string> {
     const out = new Set<string>();
     for (const id of this.seen.keys()) if (this.canMessage(id)) out.add(id);
-    if (this.codexAvailable()) for (const a of this.opts.office.list()) if (a.provider === 'codex' && a.kind === 'main' && present(a)) out.add(a.id);
+    for (const a of this.opts.office.list()) {
+      if (a.kind !== 'main' || !present(a)) continue;
+      if (a.provider === 'codex' && this.codexAvailable()) out.add(a.id);
+      if (a.provider === 'cursor') out.add(a.id);
+    }
     return out;
   }
 
   canMessage(agentId: string): boolean {
     const a = this.opts.office.get(agentId);
     if (a?.provider === 'codex') return this.codexAvailable() && present(a) && a.kind === 'main';
+    // Cursor: o plugin local entrega no `stop` via followup_message; enquanto o agente está no escritório, a caixa
+    // fica pronta (como o Codex com entregador).
+    if (a?.provider === 'cursor') return present(a) && a.kind === 'main';
     const at = this.seen.get(agentId);
     if (at === undefined || this.now() - at >= this.presenceMs) return false;
     return present(a) && a.kind === 'main';
@@ -406,8 +421,12 @@ export class MessageRegistry {
       const a = this.opts.office.get(e.msg.agentId);
       if (!present(a)) this.fail(e, now, ERR_GONE);
       else if (e.msg.status === 'queued' && a.sessionId !== e.target) this.fail(e, now, ERR_SESSION_CHANGED);
-      else if (e.msg.status === 'queued' && now - e.msg.createdAt >= this.queuedTimeoutMs) {
-        this.fail(e, now, !e.codex ? ERR_NOT_FETCHED : this.opts.codex?.run ? ERR_CODEX_SLOW : ERR_CODEX_NOT_FETCHED);
+      else if (e.msg.status === 'queued' && now - e.msg.createdAt >= (a?.provider === 'cursor' ? CURSOR_QUEUED_TIMEOUT_MS : this.queuedTimeoutMs)) {
+        this.fail(
+          e,
+          now,
+          e.codex ? (this.opts.codex?.run ? ERR_CODEX_SLOW : ERR_CODEX_NOT_FETCHED) : a?.provider === 'cursor' ? ERR_CURSOR_NOT_FETCHED : ERR_NOT_FETCHED,
+        );
       } else if (e.msg.status === 'sent' && now - (e.sentAt ?? now) >= this.sentTimeoutMs) {
         this.fail(e, now, e.codex ? ERR_CODEX_NOT_CONFIRMED : ERR_NOT_CONFIRMED);
         e.late = true;

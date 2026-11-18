@@ -4,6 +4,8 @@ import {
   canSend,
   CODEX_BRIDGE_HINT,
   CODEX_TIMEOUT_ERROR,
+  CURSOR_PLUGIN_HINT,
+  CURSOR_TIMEOUT_ERROR,
   composerMode,
   composerTip,
   DELIVERED_SHOW_MS,
@@ -121,6 +123,17 @@ describe('caixa de mensagem (peças puras)', () => {
     expect(composerTip()).toBe('Entra na sessão como se você tivesse digitado. Enter manda; Shift+Enter quebra a linha.');
     expect(timeoutError('codex')).toBe(CODEX_TIMEOUT_ERROR);
     expect(timeoutError()).toBe(TIMEOUT_ERROR);
+  });
+
+  it('Cursor: caixa pronta quando canMessage; dica e entrega falam do plugin Cursor', () => {
+    const cursor = (over: Partial<AgentInfo> = {}) => agent({ provider: 'cursor', ...over });
+    expect(composerMode(cursor(), ON)).toEqual({ kind: 'ready' });
+    expect(composerMode(cursor({ canMessage: undefined }), ON)).toEqual({ kind: 'hint', text: CURSOR_PLUGIN_HINT });
+    expect(composerMode(cursor(), { ...ON, enabled: false })).toEqual({ kind: 'off', text: 'Para responder, use o chat do Cursor' });
+    expect(sendStatusText({ phase: 'queued', at: 0 }, 0, 'cursor')).toMatch(/próximo stop/);
+    expect(sendStatusText({ phase: 'delivered', at: 0 }, 1_000, 'cursor')).toBe('Entregue ✓ no chat do Cursor');
+    expect(composerTip('cursor')).toMatch(/Cursor/);
+    expect(timeoutError('cursor')).toBe(CURSOR_TIMEOUT_ERROR);
   });
 
   it('consulta da entrega: rápida no começo, mais espaçada depois', () => {

@@ -5,8 +5,10 @@ Cursor plugin that keeps the Habblaud virtual office running and shows Cursor ag
 ## What it does
 
 - Installs as a local Cursor plugin so every Cursor window can use it
+- Also merges always-on hooks into `~/.cursor/hooks.json` (every Cursor instance)
 - Starts Habblaud on `http://localhost:4747` if it is not already up
 - Forwards session and tool events into the office
+- Delivers office messages into the active Cursor chat on agent `stop`
 - Adds an always-on rule, skill, and `/habblaud` command
 
 ## Install

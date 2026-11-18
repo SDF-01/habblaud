@@ -34,6 +34,105 @@ function startupCmdPath(): string {
   return join(startup, 'Habblaud.cmd');
 }
 
+function userHooksPath(): string {
+  return join(home(), '.cursor', 'hooks.json');
+}
+
+const USER_HOOK_MARKER = 'habblaud-cursor-ensure';
+
+/** Absolute command used in ~/.cursor/hooks.json so Habblaud runs in every Cursor window. */
+function userHookCommand(): string {
+  const script = join(pluginDir(), 'scripts', 'ensure-and-hook.mjs');
+  // Windows paths with spaces need quoting inside the hooks command string.
+  return `node "${script}"`;
+}
+
+const USER_HOOK_EVENTS = [
+  'sessionStart',
+  'sessionEnd',
+  'beforeSubmitPrompt',
+  'preToolUse',
+  'postToolUse',
+  'stop',
+  'subagentStart',
+  'subagentStop',
+  'workspaceOpen',
+] as const;
+
+function mergeUserHooks(existing: unknown, command: string): { version: number; hooks: Record<string, unknown[]> } {
+  const base =
+    existing && typeof existing === 'object' && !Array.isArray(existing)
+      ? (JSON.parse(JSON.stringify(existing)) as { version?: number; hooks?: Record<string, unknown[]> })
+      : { version: 1, hooks: {} };
+  const hooks = base.hooks && typeof base.hooks === 'object' ? base.hooks : {};
+  for (const event of USER_HOOK_EVENTS) {
+    const list = Array.isArray(hooks[event]) ? [...hooks[event]] : [];
+    const filtered = list.filter((entry) => {
+      if (!entry || typeof entry !== 'object') return true;
+      const cmd = (entry as { command?: unknown }).command;
+      return typeof cmd !== 'string' || (!cmd.includes(USER_HOOK_MARKER) && !cmd.includes('ensure-and-hook.mjs'));
+    });
+    const item: Record<string, unknown> = { command };
+    if (event === 'stop' || event === 'subagentStop') item.loop_limit = 20;
+    filtered.push(item);
+    hooks[event] = filtered;
+  }
+  return { version: typeof base.version === 'number' && base.version > 0 ? base.version : 1, hooks };
+}
+
+function writeUserHooks(dryRun: boolean): void {
+  const file = userHooksPath();
+  const command = userHookCommand();
+  let existing: unknown;
+  try {
+    existing = JSON.parse(readFileSync(file, 'utf8'));
+  } catch {
+    existing = undefined;
+  }
+  const next = mergeUserHooks(existing, command);
+  if (dryRun) {
+    console.log(`[dry-run] merge user hooks ${file}`);
+    return;
+  }
+  mkdirSync(dirname(file), { recursive: true });
+  writeFileSync(file, `${JSON.stringify(next, null, 2)}\n`, 'utf8');
+  console.log(`Merged always-on user hooks at ${file}`);
+}
+
+function removeUserHooks(dryRun: boolean): void {
+  const file = userHooksPath();
+  if (!existsSync(file)) return;
+  let existing: { version?: number; hooks?: Record<string, unknown[]> };
+  try {
+    existing = JSON.parse(readFileSync(file, 'utf8')) as { version?: number; hooks?: Record<string, unknown[]> };
+  } catch {
+    return;
+  }
+  if (!existing.hooks) return;
+  let changed = false;
+  for (const [event, list] of Object.entries(existing.hooks)) {
+    if (!Array.isArray(list)) continue;
+    const next = list.filter((entry) => {
+      if (!entry || typeof entry !== 'object') return true;
+      const cmd = (entry as { command?: unknown }).command;
+      return typeof cmd !== 'string' || (!cmd.includes('ensure-and-hook.mjs') && !cmd.includes(USER_HOOK_MARKER));
+    });
+    if (next.length !== list.length) {
+      changed = true;
+      if (next.length) existing.hooks[event] = next;
+      else delete existing.hooks[event];
+    }
+  }
+  if (!changed) return;
+  if (dryRun) {
+    console.log(`[dry-run] clean user hooks ${file}`);
+    return;
+  }
+  if (!Object.keys(existing.hooks).length) rmSync(file, { force: true });
+  else writeFileSync(file, `${JSON.stringify({ version: existing.version ?? 1, hooks: existing.hooks }, null, 2)}\n`, 'utf8');
+  console.log(`Cleaned Habblaud entries from ${file}`);
+}
+
 function parseArgs(argv: string[]): { cmd: Cmd; port: number; startup: boolean; dryRun: boolean } {
   const args = argv.slice(2);
   let cmd: Cmd = 'install';
@@ -139,6 +238,8 @@ async function status(port: number): Promise<void> {
     const s = startupCmdPath();
     console.log(`Startup: ${s} (${existsSync(s) ? 'present' : 'missing'})`);
   }
+  const uh = userHooksPath();
+  console.log(`User hooks: ${uh} (${existsSync(uh) ? 'present' : 'missing'})`);
   const up = await health(port);
   console.log(`Habblaud http://127.0.0.1:${port}/api/health: ${up ? 'ok' : 'down'}`);
 }
@@ -164,6 +265,7 @@ async function main(): Promise<void> {
       }
     }
     removeStartup(dryRun);
+    removeUserHooks(dryRun);
     return;
   }
 
@@ -171,6 +273,7 @@ async function main(): Promise<void> {
   if (!existsSync(join(ROOT, 'package.json'))) throw new Error(`Habblaud root not found: ${ROOT}`);
   copyPlugin(dryRun);
   writeConfig(port, dryRun);
+  writeUserHooks(dryRun);
   if (startup) writeStartup(port, dryRun);
 
   const built = existsSync(join(ROOT, 'dist', 'server', 'index.js'));
