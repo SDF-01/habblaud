@@ -1,0 +1,13 @@
+{
+  "name": "habblaud",
+  "displayName": "Habblaud",
+  "version": "1.0.3",
+  "description": "Virtual pixel-art office for your Cursor agents. Shows live agent activity in Habblaud at http://localhost:4747.",
+  "author": {
+    "name": "SDF-01",
+    "url": "https://github.com/SDF-01/habblaud"
+  },
+  "license": "MIT",
+  "keywords": ["habblaud", "agents", "office", "cursor", "productivity"],
+  "homepage": "https://github.com/SDF-01/habblaud"
+}

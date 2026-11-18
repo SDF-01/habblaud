@@ -3,6 +3,7 @@
 //   npm run dev    -> tsx server/index.ts --dev (Vite em middleware mode, HMR no mesmo servidor)
 //   npm start      -> node dist/server/index.js (serve dist/client)
 import http from 'node:http';
+import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { codexDirsRefused, isDefaultDir } from './accounts/detect';
 import { AccountsService } from './accounts/service';
@@ -37,6 +38,8 @@ import { ClaudeWatcher } from './sources/watcher';
 import { discoverCodexDirs } from './sources/codex/accounts';
 import { CodexHistory } from './sources/codex/history';
 import { CodexSource } from './sources/codex/source';
+import { CursorSource, type CursorLive } from './sources/cursor/source';
+import { discoverCursorProjects } from './sources/cursor/discover';
 import { createBuildReader, readBuildInfo } from './build';
 import { UpdateChecker } from './updates/checker';
 import { getLocale, tr } from '../shared/i18n';
@@ -141,6 +144,15 @@ if (codex) agents.add(codex);
 // Eventos dos hooks do Codex (POST /api/codex/events, mod/habblaud-codex/hook.mjs): vão para a fonte do Codex ao vivo
 // (CodexLive); sem ela (nenhuma pasta do Codex ou HABBLAUD_CODEX=0) a rota responde {ok: false}.
 const codexLive: CodexLive | undefined = codex;
+// Cursor: sessões de agentes do Cursor IDE (sources/cursor/). HABBLAUD_CURSOR=0 desliga.
+// Sobe mesmo sem projetos ainda: os hooks e a rediscoberta preenchem as salas depois.
+const cursorProjectDirs = config.cursor ? discoverCursorProjects(process.env, config.home) : [];
+const cursor =
+  config.cursor && (cursorProjectDirs.length > 0 || existsSync(join(config.home, '.cursor', 'projects')))
+    ? new CursorSource({ accounts, office, projectDirs: cursorProjectDirs, home: config.home, env: process.env })
+    : undefined;
+if (cursor) agents.add(cursor);
+const cursorLive: CursorLive | undefined = cursor;
 late.office = office;
 late.agents = agents;
 // Página que pode responder pelo escritório: Host local na porta local; na remota, só com permissions liberado.
@@ -372,6 +384,7 @@ const api = createApiHandler({
     return recentFolders(history ? await history.list().catch(() => []) : [], rooms);
   },
   codexLive,
+  cursorLive,
   stats,
   updates,
   remote: config.remote ? { is: isRemoteRequest, allows: (f) => config.remote!.allow.has(f) } : undefined,
@@ -490,6 +503,12 @@ server.listen(config.port, config.host, () => {
     }
   } else {
     log.info(tr('   Codex: {0}.', [config.codex ? tr('nenhuma pasta do Codex encontrada (defina HABBLAUD_CODEX_DIRS)') : tr('desligado (HABBLAUD_CODEX=0)')]));
+  }
+  if (cursor) {
+    const open = cursor.sources().reduce((n, s) => n + s.sessions, 0);
+    log.info(tr('   Cursor: {0} projeto(s), {1} sessão(ões) aberta(s).', [cursorProjectDirs.length, open]));
+  } else {
+    log.info(tr('   Cursor: {0}.', [config.cursor ? tr('nenhum projeto do Cursor encontrado') : tr('desligado (HABBLAUD_CURSOR=0)')]));
   }
   if (office.isDemo()) log.info(tr('   Modo demonstração ligado (agentes simulados misturados aos reais).'));
   if (config.terminal) log.info(tr('   Terminal: ligado (acesso só local).'));

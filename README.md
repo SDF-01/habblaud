@@ -127,15 +127,31 @@ shrinks on its own.
 
 ### Requirements
 
-- **macOS** (tested) or Linux.
-- **[Claude Code](https://code.claude.com)** installed, with one or more accounts (2.1.287 or newer for the mod).
+- **macOS**, **Linux**, or **Windows** (Cursor support is developed on Windows; Claude Code path is best tested on macOS/Linux).
+- **[Cursor](https://cursor.com)** and/or **[Claude Code](https://code.claude.com)** (2.1.287 or newer for the Claude mod).
 - **Node.js 22.12+** and **npm** (developed with Node 24; Docker already uses Node 24).
 - **Docker Desktop** (or Docker Engine with Compose v2), if you're going to run it in a container.
+
+### Cursor (this fork)
+
+This fork adds a Cursor agent source and a local Cursor plugin so Habblaud can stay running in every Cursor window.
+
+```bash
+git clone https://github.com/SDF-01/habblaud.git
+cd habblaud
+npm install
+npm run build
+npm run cursor:install
+```
+
+Then reload Cursor (**Developer: Reload Window**) and open **http://localhost:4747**. Cursor agents show a **CURSOR** badge. Plugin hooks start Habblaud if it is down; on Windows, install also registers a Startup shortcut.
+
+Useful commands: `npm run cursor:status`, `npm run cursor:uninstall`. Details: [`cursor-plugin/README.md`](cursor-plugin/README.md).
 
 ### 1. Get the project
 
 ```bash
-git clone https://github.com/marmottajr/habblaud.git
+git clone https://github.com/SDF-01/habblaud.git
 cd habblaud
 npm install
 ```

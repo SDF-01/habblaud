@@ -247,7 +247,7 @@ function toWorldAgent(c: Candidate, widOf: ReadonlyMap<string, string>, name: st
     id: c.wid,
     kind: a.kind,
     ...(parent ? { parentId: parent } : {}),
-    provider: a.provider === 'codex' ? 'codex' : 'claude',
+    provider: a.provider === 'codex' ? 'codex' : 'claude', // cursor → claude for world protocol
     status: a.status as WorldAgentStatus,
     look: a.look === 'f' ? 'f' : 'm',
     name,

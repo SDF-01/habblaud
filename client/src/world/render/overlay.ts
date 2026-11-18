@@ -104,10 +104,22 @@ interface Label {
 type Item = Bubble | Label;
 
 /** Luminância relativa de uma cor hex (0..1). */
-/** Fundo do chip vazado das contas do Codex (o mesmo dos painéis). */
+/** Fundo do chip vazado das contas do Codex e Cursor (o mesmo dos painéis). */
 const CODEX_CHIP_BG = '#161b26';
-/** Selo "CODEX" das etiquetas: discreto (vidro claro), sem a cor de ninguém. */
+const ALT_CHIP_BG = CODEX_CHIP_BG;
+/** Selo das etiquetas: discreto (vidro claro), sem a cor de ninguém. */
 const CODEX_BADGE = 'CODEX';
+const CURSOR_BADGE = 'CURSOR';
+
+/** Ferramenta com chip vazado e selo (Codex, Cursor). */
+function isAltProvider(provider: string | undefined): boolean {
+  return provider === 'codex' || provider === 'cursor';
+}
+
+/** Texto do selo para a ferramenta. */
+function altBadgeText(provider: string | undefined): string {
+  return provider === 'cursor' ? CURSOR_BADGE : CODEX_BADGE;
+}
 
 /** Octógono "em degrau" (um quadrado de cantos cortados, como um pixel arredondado). */
 function steppedRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, s: number): void {
@@ -130,8 +142,8 @@ function steppedRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: num
 function accountDot(ctx: CanvasRenderingContext2D, x: number, y: number, r: number, acc: { color: string; provider?: string }): void {
   ctx.beginPath();
   ctx.arc(x, y, r, 0, Math.PI * 2);
-  if (acc.provider === 'codex') {
-    ctx.fillStyle = CODEX_CHIP_BG;
+  if (isAltProvider(acc.provider)) {
+    ctx.fillStyle = ALT_CHIP_BG;
     ctx.fill();
     ctx.lineWidth = Math.max(1.2, r * 0.55);
     ctx.strokeStyle = acc.color;
@@ -876,7 +888,7 @@ export class Overlay {
     const chipW = acc ? 13 : 0;
     const visitor = ch === this.sim.visitor;
     const badgeW = visitor ? this.measure(BADGE_FONT, visitorBadge()) + 7 : ch.info.kind === 'sub' && !l.compact ? this.measure(BADGE_FONT, 'SUB') + 7 : 0;
-    const codexW = ch.info.provider === 'codex' && !l.compact ? this.measure(BADGE_FONT, CODEX_BADGE) + 7 : 0;
+    const codexW = isAltProvider(ch.info.provider) && !l.compact ? this.measure(BADGE_FONT, altBadgeText(ch.info.provider)) + 7 : 0;
     return { nameW, chipW, badgeW, codexW };
   }
 
@@ -907,7 +919,7 @@ export class Overlay {
     const ch = l.ch;
     const acc = this.sim.accounts.get(ch.info.account);
     const sub = ch.info.kind === 'sub';
-    const codex = ch.info.provider === 'codex' || acc?.provider === 'codex';
+    const codex = isAltProvider(ch.info.provider) || isAltProvider(acc?.provider);
     const { nameW, chipW, badgeW, codexW } = this.labelWidth(l);
     const { x, y, w, h } = l;
     const selected = sel.agent === ch.id;
@@ -917,9 +929,9 @@ export class Overlay {
     ctx.fill();
     let cx = x + 4;
     if (acc && codex) {
-      // Codex: chip vazado de cantos em degrau (fundo escuro, borda e letra na cor da conta), como nos painéis.
+      // Codex/Cursor: chip vazado de cantos em degrau (fundo escuro, borda e letra na cor da conta), como nos painéis.
       steppedRect(ctx, cx, y + h / 2 - 5, 10, 10, 2);
-      ctx.fillStyle = CODEX_CHIP_BG;
+      ctx.fillStyle = ALT_CHIP_BG;
       ctx.fill();
       ctx.lineWidth = 1.5;
       ctx.strokeStyle = acc.color;
@@ -970,7 +982,7 @@ export class Overlay {
       ctx.fill();
       ctx.font = BADGE_FONT;
       ctx.fillStyle = '#e8ecf5';
-      ctx.fillText(CODEX_BADGE, cx + 3.5, y + h / 2 + 0.5);
+      ctx.fillText(altBadgeText(ch.info.provider), cx + 3.5, y + h / 2 + 0.5);
     }
   }
 }

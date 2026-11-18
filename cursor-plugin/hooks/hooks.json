@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "node ./scripts/ensure-and-hook.mjs"
+      }
+    ],
+    "sessionEnd": [
+      {
+        "command": "node ./scripts/ensure-and-hook.mjs"
+      }
+    ],
+    "beforeSubmitPrompt": [
+      {
+        "command": "node ./scripts/ensure-and-hook.mjs"
+      }
+    ],
+    "preToolUse": [
+      {
+        "command": "node ./scripts/ensure-and-hook.mjs"
+      }
+    ],
+    "postToolUse": [
+      {
+        "command": "node ./scripts/ensure-and-hook.mjs"
+      }
+    ],
+    "stop": [
+      {
+        "command": "node ./scripts/ensure-and-hook.mjs"
+      }
+    ],
+    "subagentStart": [
+      {
+        "command": "node ./scripts/ensure-and-hook.mjs"
+      }
+    ],
+    "subagentStop": [
+      {
+        "command": "node ./scripts/ensure-and-hook.mjs"
+      }
+    ]
+  }
+}

@@ -8,7 +8,7 @@ import { shortcutHint } from './model';
 import { tr } from '../../../shared/i18n';
 
 /** Nome de cada ferramenta como aparece nos textos. */
-export const PROVIDER_NAME: Record<Provider, string> = { claude: 'Claude Code', codex: 'Codex' };
+export const PROVIDER_NAME: Record<Provider, string> = { claude: 'Claude Code', codex: 'Codex', cursor: 'Cursor' };
 
 /** Ferramenta de um agente, conta, sessão ou pedido (ausente = Claude Code). */
 export function providerOf(x: { provider?: Provider } | null | undefined): Provider {
@@ -19,6 +19,10 @@ export function isCodex(x: { provider?: Provider } | null | undefined): boolean 
   return x?.provider === 'codex';
 }
 
+export function isCursor(x: { provider?: Provider } | null | undefined): boolean {
+  return x?.provider === 'cursor';
+}
+
 /**
  * O id de conta tem cara de pasta do Codex (".codex", ".codex-trabalho", ".codex~2", "demo:.codex")? Só para quando a
  * conta já não está no snapshot (ex.: histórico, "Meu dia"): com a conta à mão, vale o `provider` dela.
@@ -27,10 +31,18 @@ export function looksLikeCodexId(id: string): boolean {
   return /(?:^|[:/\\])\.?codex(?:[-_.~]|$)/i.test(id);
 }
 
+/** O id tem cara de pasta do Cursor (".cursor", ".cursor-..."); só quando a conta não está no snapshot. */
+export function looksLikeCursorId(id: string): boolean {
+  return /\.cursor(?:[-_.~]|$)/i.test(id) || /^\.cursor/i.test(id);
+}
+
 /** Ferramenta da conta: a do snapshot; sem ela, a dica de quem chamou ou o jeito do id. */
 export function accountProvider(account: Pick<AccountInfo, 'provider'> | undefined, fallbackId = '', hint?: Provider): Provider {
   if (account) return providerOf(account);
-  return hint ?? (looksLikeCodexId(fallbackId) ? 'codex' : 'claude');
+  if (hint) return hint;
+  if (looksLikeCursorId(fallbackId)) return 'cursor';
+  if (looksLikeCodexId(fallbackId)) return 'codex';
+  return 'claude';
 }
 
 /**
@@ -42,23 +54,32 @@ export function fallbackShort(id: string, provider: Provider = accountProvider(u
   const rest = id
     .replace(/^.*:/, '')
     .replace(/~\d+$/, '')
-    .replace(/^\.?(?:claude|codex)(?=[-_.]|$)[-_.]?/i, '');
+    .replace(/^\.?(?:claude|codex|cursor)(?=[-_.]|$)[-_.]?/i, '');
   const letter = /[\p{L}\p{N}]/u.exec(rest)?.[0];
   if (letter) return letter.toUpperCase();
+  if (provider === 'cursor') return 'R';
   return provider === 'codex' ? 'X' : '?';
 }
 
-/** O selo "Codex" ao lado do nome da conta (não repete quando o nome já diz "Codex"). */
+/** O selo "Codex" ou "Cursor" ao lado do nome da conta (não repete quando o nome já diz o mesmo). */
 export function showsProviderTag(provider: Provider, accountName = ''): boolean {
-  return provider === 'codex' && !/codex/i.test(accountName);
+  if (provider === 'codex') return !/codex/i.test(accountName);
+  if (provider === 'cursor') return !/cursor/i.test(accountName);
+  return false;
 }
 
-/** Rótulo do chip da conta (dica e leitores de tela): "Conta C (dev@x.com)", "Codex · plano Team". */
+/** Rótulo do chip da conta (dica e leitores de tela): "Conta C (dev@x.com)", "Codex · plano Team", "Cursor". */
 export function accountChipLabel(account: Pick<AccountInfo, 'name' | 'email' | 'plan' | 'provider'> | undefined, fallbackId: string, provider: Provider): string {
-  if (!account) return fallbackId ? `${fallbackId}${provider === 'codex' ? ' · Codex' : ''}` : tr('Conta desconhecida');
-  if (provider !== 'codex') return `${account.name}${account.email ? ` (${account.email})` : ''}`;
-  const tag = showsProviderTag(provider, account.name) ? ' · Codex' : '';
-  return `${account.name}${tag}${account.plan ? tr(' · plano {0}', [account.plan]) : ''}`;
+  if (!account) {
+    const suffix = provider === 'codex' ? ' · Codex' : provider === 'cursor' ? ' · Cursor' : '';
+    return fallbackId ? `${fallbackId}${suffix}` : tr('Conta desconhecida');
+  }
+  if (provider === 'codex' || provider === 'cursor') {
+    const label = provider === 'codex' ? 'Codex' : 'Cursor';
+    const tag = showsProviderTag(provider, account.name) ? ` · ${label}` : '';
+    return `${account.name}${tag}${account.plan ? tr(' · plano {0}', [account.plan]) : ''}`;
+  }
+  return `${account.name}${account.email ? ` (${account.email})` : ''}`;
 }
 
 /**
@@ -66,9 +87,12 @@ export function accountChipLabel(account: Pick<AccountInfo, 'name' | 'email' | '
  * shell (a letra de uma conta do Codex não é um atalho); o Codex só entra quando há uma conta dele.
  */
 export function emptyOfficeHint(accounts: readonly Pick<AccountInfo, 'short' | 'provider'>[]): string {
-  const keys = shortcutHint(accounts.filter((a) => !isCodex(a)));
-  if (!accounts.some(isCodex)) return tr('Abra o Claude Code em qualquer projeto{0} e veja seu agente chegar.', [keys ? ` (${keys})` : '']);
-  return tr('Abra o Claude Code{0} ou o Codex em qualquer projeto e veja seu agente chegar.', [keys ? ` (${keys})` : '']);
+  const keys = shortcutHint(accounts.filter((a) => !isCodex(a) && !isCursor(a)));
+  const hasCodex = accounts.some(isCodex);
+  const hasCursor = accounts.some(isCursor);
+  if (!hasCodex && !hasCursor) return tr('Abra o Claude Code em qualquer projeto{0} e veja seu agente chegar.', [keys ? ` (${keys})` : '']);
+  const others = [hasCodex ? 'o Codex' : '', hasCursor ? 'o Cursor' : ''].filter(Boolean).join(' ou ');
+  return tr('Abra o Claude Code{0} ou {1} em qualquer projeto e veja seu agente chegar.', [keys ? ` (${keys})` : '', others]);
 }
 
 /** Algum pedido de permissão do Codex esperando: o prazo é curto e o cartão conta os segundos (relógio de 1 s). */
