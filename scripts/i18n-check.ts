@@ -23,7 +23,8 @@ export function collectKeys(root = ROOT): Map<string, string[]> {
       } else if (p.endsWith('.ts') && !p.endsWith('.test.ts') && name !== 'i18n-check.ts') {
         const src = readFileSync(p, 'utf8');
         for (const m of src.matchAll(re)) {
-          const key = unescapeJs(m[2]);
+          // Normalize CRLF from Windows source files so keys match locale dictionaries (\n only).
+          const key = unescapeJs(m[2]).replace(/\r\n/g, '\n').replace(/\r/g, '\n');
           const line = src.slice(0, m.index).split('\n').length;
           keys.set(key, [...(keys.get(key) ?? []), `${relative(root, p)}:${line}`]);
         }

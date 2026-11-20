@@ -10,6 +10,12 @@ do meio (0.**3**.0).
 
 ## [Não lançado]
 
+### Changed
+
+- **English is the default language in this fork.** The office UI, server activity text, desktop app, and HTML
+  metadata default to English (`HABBLAUD_LANG` / system locale still override). Cursor-related strings now have
+  English (and ES/FR) translations so they no longer fall back to Portuguese.
+
 ## [1.0.3] - 2026-10-16
 
 ### Corrigido

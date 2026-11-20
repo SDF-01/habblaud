@@ -88,11 +88,15 @@ export function accountChipLabel(account: Pick<AccountInfo, 'name' | 'email' | '
  */
 export function emptyOfficeHint(accounts: readonly Pick<AccountInfo, 'short' | 'provider'>[]): string {
   const keys = shortcutHint(accounts.filter((a) => !isCodex(a) && !isCursor(a)));
+  const suffix = keys ? ` (${keys})` : '';
   const hasCodex = accounts.some(isCodex);
   const hasCursor = accounts.some(isCursor);
-  if (!hasCodex && !hasCursor) return tr('Abra o Claude Code em qualquer projeto{0} e veja seu agente chegar.', [keys ? ` (${keys})` : '']);
-  const others = [hasCodex ? 'o Codex' : '', hasCursor ? 'o Cursor' : ''].filter(Boolean).join(' ou ');
-  return tr('Abra o Claude Code{0} ou {1} em qualquer projeto e veja seu agente chegar.', [keys ? ` (${keys})` : '', others]);
+  if (hasCodex && hasCursor) {
+    return tr('Abra o Claude Code{0}, o Codex ou o Cursor em qualquer projeto e veja seu agente chegar.', [suffix]);
+  }
+  if (hasCodex) return tr('Abra o Claude Code{0} ou o Codex em qualquer projeto e veja seu agente chegar.', [suffix]);
+  if (hasCursor) return tr('Abra o Claude Code{0} ou o Cursor em qualquer projeto e veja seu agente chegar.', [suffix]);
+  return tr('Abra o Claude Code em qualquer projeto{0} e veja seu agente chegar.', [suffix]);
 }
 
 /** Algum pedido de permissão do Codex esperando: o prazo é curto e o cartão conta os segundos (relógio de 1 s). */

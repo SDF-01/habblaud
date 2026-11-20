@@ -1,20 +1,18 @@
-// Idiomas da interface. O português (pt-BR) continua sendo a língua de origem: cada texto é escrito em PT
-// e passa por tr(), que devolve a tradução do idioma ativo ou, na falta dela, o próprio texto em PT.
-// Assim nada muda para quem usa em português, e uma tradução incompleta nunca quebra a interface.
+// Interface languages. Portuguese (pt-BR) remains the source language for tr() keys: each string is written in PT
+// and tr() returns the active-language translation, or the PT source if missing (so incomplete dictionaries never blank the UI).
 //
-// Escolha do idioma (uma vez, ao carregar este módulo):
-// - navegador: preferência salva (Configurações > Idioma), senão os idiomas do navegador;
-// - servidor: HABBLAUD_LANG, senão o idioma do sistema (LC_ALL / LC_MESSAGES / LANG / Intl), menos o inglês (ver
-//   serverLocale).
-// Os textos de atividade são montados pelo servidor, então seguem o idioma do servidor.
+// This fork defaults to English:
+// - browser: saved preference (Settings > Language), else browser languages, else English;
+// - server: HABBLAUD_LANG, else system language (LC_ALL / LC_MESSAGES / LANG / Intl), else English.
+// Activity texts are built on the server, so they follow the server locale.
 import { DICTIONARIES } from './locales/all';
 
 export type Locale = 'pt-BR' | 'en' | 'es' | 'fr';
 
-/** Na ordem do seletor; o nome de cada idioma vai na própria língua, para quem não entende o idioma atual. */
+/** Selector order; each language name stays in that language so people can find theirs. */
 export const LOCALES: { id: Locale; name: string }[] = [
-  { id: 'pt-BR', name: 'Português' },
   { id: 'en', name: 'English' },
+  { id: 'pt-BR', name: 'Português' },
   { id: 'es', name: 'Español' },
   { id: 'fr', name: 'Français' },
 ];
@@ -42,19 +40,17 @@ export function normalizeLocale(v: string | null | undefined): Locale | undefine
 }
 
 /**
- * Idioma do servidor (atividades, avisos, logs). HABBLAUD_LANG vale para qualquer idioma. Do sistema (LC_ALL,
- * LC_MESSAGES, LANG e, por último, o Intl) vale francês, espanhol ou português, mas não o inglês: muitas máquinas e
- * containers vêm em inglês por padrão (en_US, ou o en-US do Node sem LANG), mesmo para quem usa outra língua, e o
- * escritório mudaria de idioma sozinho. Para o servidor em inglês: HABBLAUD_LANG=en.
+ * Server locale (activities, notices, logs). HABBLAUD_LANG wins for any language. Otherwise use the system locale
+ * (LC_ALL, LC_MESSAGES, LANG, then Intl), including English. Default for this fork: English.
  */
 export function serverLocale(env: Record<string, string | undefined>, intl?: string): Locale {
   const own = normalizeLocale(env.HABBLAUD_LANG);
   if (own) return own;
   for (const v of [env.LC_ALL, env.LC_MESSAGES, env.LANG, intl]) {
     const n = normalizeLocale(v);
-    if (n && n !== 'en') return n;
+    if (n) return n;
   }
-  return 'pt-BR';
+  return 'en';
 }
 
 function detect(): Locale {
@@ -69,16 +65,16 @@ function detect(): Locale {
       const saved = normalizeLocale(g.localStorage?.getItem(LOCALE_STORAGE_KEY));
       if (saved) return saved;
     } catch {
-      // localStorage bloqueado (modo privado, iframe): segue para os idiomas do navegador.
+      // localStorage blocked (private mode, iframe): fall through to browser languages.
     }
     for (const l of g.navigator?.languages ?? [g.navigator?.language ?? '']) {
       const n = normalizeLocale(l);
       if (n) return n;
     }
-    return 'pt-BR';
+    return 'en';
   }
   const env = g.process?.env ?? {};
-  // Os testes comparam textos em PT: ficam em PT mesmo numa máquina em outro idioma.
+  // Tests assert Portuguese source strings: stay on PT regardless of the host machine.
   if (env.VITEST) return normalizeLocale(env.HABBLAUD_LANG_TEST) ?? 'pt-BR';
   let intl: string | undefined;
   try {
@@ -101,12 +97,13 @@ export function setLocale(l: Locale): void {
 }
 
 /**
- * Traduz um texto escrito em PT. Lacunas numeradas ({0}, {1}...) recebem `args` na ordem; a tradução pode
- * reordená-las. Sem tradução para o idioma ativo, devolve o texto original.
+ * Translate a Portuguese source string. Numbered gaps ({0}, {1}...) take `args` in order; translations may reorder them.
+ * Missing translation returns the source. Newlines are normalized so Windows CRLF keys still match locale files.
  */
 export function tr(src: string, args?: readonly unknown[]): string {
   const dict = DICTS[current];
-  const s = (dict && dict[src]) || src;
+  const key = src.includes('\r') ? src.replace(/\r\n/g, '\n') : src;
+  const s = (dict && (dict[key] || dict[src])) || src;
   if (!args || args.length === 0) return s;
   return s.replace(/\{(\d+)\}/g, (m, i: string) => (Number(i) < args.length ? String(args[Number(i)]) : m));
 }

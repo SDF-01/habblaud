@@ -2,10 +2,7 @@
 // As lacunas {0}, {1}... (e as nomeadas, como {sala}) precisam aparecer na tradução, em qualquer ordem.
 // Chave ausente = o texto fica em PT. `npm run i18n:check` lista os textos sem tradução e as chaves que sobraram.
 export const FR: Readonly<Record<string, string>> = {
-  // client/src/main.ts
   "Escritório virtual em pixel art que mostra, em tempo real, o que seus agentes do Claude Code estão fazendo.": "Bureau virtuel en pixel art qui montre, en temps réel, ce que font vos agents Claude Code.",
-
-  // client/src/net/store.ts
   "Este pedido já foi respondido.": "Cette demande a déjà reçu une réponse.",
   "Não foi possível responder (erro {0}).": "Impossible de répondre (erreur {0}).",
   "Editar o personagem só funciona com o escritório ao vivo.": "La modification du personnage ne fonctionne qu'avec le bureau en direct.",
@@ -15,11 +12,7 @@ export const FR: Readonly<Record<string, string>> = {
   "agente desconhecido: ele já saiu do escritório?": "agent inconnu : a-t-il déjà quitté le bureau ?",
   "este agente não recebe mensagens agora": "cet agent ne reçoit pas de messages pour le moment",
   "o agente saiu do escritório": "l'agent a quitté le bureau",
-
-  // client/src/net/timeline.ts
   "dia inválido": "jour invalide",
-
-  // client/src/ui/character-editor.ts
   "Editar personagem": "Modifier le personnage",
   "Prévia do personagem": "Aperçu du personnage",
   "Sortear": "Tirer au sort",
@@ -34,8 +27,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Personagem salvo: {0}.": "Personnage enregistré : {0}.",
   "Confirmar: voltar ao sorteio": "Confirmer : revenir au tirage au sort",
   "O personagem voltou ao sorteio.": "Le personnage est revenu au tirage au sort.",
-
-  // client/src/ui/character-model.ts
   "Pele": "Peau",
   "Tom": "Teinte",
   "Cabelo": "Cheveux",
@@ -83,8 +74,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Por fazer": "Barbe de trois jours",
   "Bigode": "Moustache",
   "Cavanhaque": "Bouc",
-
-  // client/src/ui/composer-model.ts
   "Para mandar mensagens daqui: npm run mod:install (plugin habblaud-mensagens)": "Pour envoyer des messages d'ici : npm run mod:install (plugin habblaud-mensagens)",
   "Para mandar mensagens ao Codex: com o Habblaud no Docker, deixe npm run codex:bridge rodando; no modo Node funciona sozinho": "Pour envoyer des messages à Codex : avec Habblaud dans Docker, laissez tourner npm run codex:bridge ; en mode Node, cela marche tout seul",
   "Sem mensagens no timelapse: o escritório mostrado é o de outro momento": "Pas de messages pendant le timelapse : le bureau affiché est celui d'un autre moment",
@@ -108,8 +97,6 @@ export const FR: Readonly<Record<string, string>> = {
   "sem notícia da entrega: confira no terminal do Claude Code": "pas de nouvelles de la remise : vérifiez dans le terminal de Claude Code",
   "sem notícia da entrega: confira no Codex": "pas de nouvelles de la remise : vérifiez dans Codex",
   "não foi possível falar com o Habblaud": "impossible de joindre Habblaud",
-
-  // client/src/ui/composer.ts
   "Mandar (Enter)": "Envoyer (Entrée)",
   "Mandar a mensagem": "Envoyer le message",
   "Enviar": "Envoyer",
@@ -117,12 +104,8 @@ export const FR: Readonly<Record<string, string>> = {
   "Mensagem para {0} (Enter manda, Shift+Enter quebra a linha)": "Message pour {0} (Entrée envoie, Maj+Entrée va à la ligne)",
   "Mensagem para {0}…": "Message pour {0}…",
   "Mensagem para {0}": "Message pour {0}",
-
-  // client/src/ui/daystats-launcher.ts
   "Meu dia: para onde foi o tempo (M)": "Ma journée : où est passé le temps (M)",
   "Não foi possível abrir o painel Meu dia.": "Impossible d'ouvrir le panneau Ma journée.",
-
-  // client/src/ui/daystats-model.ts
   "Esperando você": "Vous attend",
   "Trabalhando": "Au travail",
   "Ocioso": "Inactif",
@@ -157,8 +140,6 @@ export const FR: Readonly<Record<string, string>> = {
   ", ainda esperando": ", attend toujours",
   "Hoje": "Aujourd'hui",
   "Ontem": "Hier",
-
-  // client/src/ui/daystats.ts
   "Tempo de agentes é a soma de todos eles: dois agentes trabalhando por 1 hora contam 2 horas. ": "Le temps d'agents est la somme de tous les agents : deux agents qui travaillent 1 heure comptent pour 2 heures. ",
   "“Esperando você” é o tempo de mão levantada no escritório (permissão, pergunta ou escolha). ": "« Vous attend » est le temps passé main levée dans le bureau (permission, question ou choix). ",
   "O Habblaud só conta o que acontece enquanto ele está rodando.": "Habblaud ne compte que ce qui se passe pendant qu'il tourne.",
@@ -209,8 +190,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Cada conta na cor dela, com a fatia do tempo de trabalho do dia": "Chaque compte dans sa couleur, avec sa part du temps de travail de la journée",
   "Nenhuma conta com tempo neste dia.": "Aucun compte avec du temps ce jour-là.",
   "só tokens": "tokens uniquement",
-
-  // client/src/ui/drawer.ts
   "Copiado!": "Copié !",
   "Não foi possível copiar": "Copie impossible",
   "concluída": "terminée",
@@ -288,8 +267,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Fechar detalhes (Esc)": "Fermer les détails (Échap)",
   "Subagente": "Sous-agent",
   "Agente": "Agent",
-
-  // client/src/ui/feed.ts
   "Eventos recentes": "Événements récents",
   "Os eventos dos agentes aparecem aqui assim que acontecem.": "Les événements des agents apparaissent ici dès qu'ils se produisent.",
   "Feed de atividade": "Fil d'activité",
@@ -300,8 +277,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Sem {0} (filtro da barra lateral)": "Sans {0} (filtre de la barre latérale)",
   "Recolher feed ( ] )": "Replier le fil ( ] )",
   "Abrir feed ( ] )": "Ouvrir le fil ( ] )",
-
-  // client/src/ui/format.ts
   "agora": "maintenant",
   "há {0} s": "il y a {0} s",
   "há {0} min": "il y a {0} min",
@@ -321,8 +296,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Sem confirmações": "Sans confirmation",
   "Não pergunta": "Ne demande pas",
   "Automático": "Automatique",
-
-  // client/src/ui/help.ts
   "Na mesa, digitando: está processando um pedido.": "Au bureau, en train de taper : traite une demande.",
   "Mão levantada: espera uma resposta sua no terminal (permissão, pergunta ou escolha).": "Main levée : attend votre réponse dans le terminal (permission, question ou choix).",
   "Ampulheta sobre a cabeça: terminou o turno e fica na mesa esperando um shell terminar.": "Sablier au-dessus de la tête : a fini son tour et reste au bureau en attendant la fin d'un shell.",
@@ -410,8 +383,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Números antigos ficam acinzentados com a idade ao lado (ex.: “há 3 h”); uma janela que já reiniciou desde a leitura mostra “—” e “renovada”.": "Les chiffres anciens sont grisés avec leur âge à côté (ex. : « il y a 3 h ») ; une fenêtre déjà réinitialisée depuis la lecture affiche « — » et « renouvelée ».",
   "Para ver o uso de uma conta (“sem dados de uso”), em ordem de preferência:": "Pour voir l'utilisation d'un compte (« pas de données d'utilisation »), par ordre de préférence :",
   "Conta {0}": "Compte {0}",
-
-  // client/src/ui/history.ts
   "Histórico de sessões": "Historique des sessions",
   "Buscar por título, projeto ou conta": "Chercher par titre, projet ou compte",
   "Buscar sessões por título, projeto ou conta": "Chercher des sessions par titre, projet ou compte",
@@ -430,16 +401,10 @@ export const FR: Readonly<Record<string, string>> = {
   "Ainda aberta: abre o terminal ao vivo do agente": "Encore ouverte : ouvre le terminal en direct de l'agent",
   "Encerrada: abre a conversa no terminal": "Terminée : ouvre la conversation dans le terminal",
   "última atividade {0} às {1}": "dernière activité {0} à {1}",
-
-  // client/src/ui/hovertip.ts
   "há {0}": "il y a {0}",
-
-  // client/src/ui/index.ts
   "Selecione um agente para seguir.": "Sélectionnez un agent à suivre.",
   "Nenhum pedido de permissão ou pergunta para responder agora.": "Aucune demande de permission ni question à traiter pour le moment.",
   "Selecione um agente para abrir o terminal.": "Sélectionnez un agent pour ouvrir le terminal.",
-
-  // client/src/ui/model.ts
   "Concluído": "Terminé",
   "Saindo": "Sur le départ",
   "Trabalhando…": "Au travail…",
@@ -465,15 +430,9 @@ export const FR: Readonly<Record<string, string>> = {
   "Depois de 25 min: cochila na mesa, coberto de teia.": "Après 25 min : s'endort sur le bureau, couvert de toiles.",
   "atalho {0}": "raccourci {0}",
   "atalhos {0} ou {1}": "raccourcis {0} ou {1}",
-
-  // client/src/ui/movable.ts
   "Restaurar o tamanho": "Restaurer la taille",
   "Expandir na tela toda": "Agrandir en plein écran",
-
-  // client/src/ui/notify.ts
   "Habblaud — precisa de você": "Habblaud — on a besoin de vous",
-
-  // client/src/ui/overlays.ts
   "Conectando ao escritório…": "Connexion au bureau…",
   "O servidor do Habblaud não responde. Confira se ele está rodando (npm run dev ou npm start); seguimos tentando.": "Le serveur Habblaud ne répond pas. Vérifiez qu'il tourne (npm run dev ou npm start) ; nous continuons d'essayer.",
   "Não foi possível conectar ao servidor do Habblaud. Tentando de novo…": "Impossible de se connecter au serveur Habblaud. Nouvelle tentative…",
@@ -485,8 +444,6 @@ export const FR: Readonly<Record<string, string>> = {
   "O servidor do Habblaud não responde. Confira se ele está rodando (npm run dev ou npm start).": "Le serveur Habblaud ne répond pas. Vérifiez qu'il tourne (npm run dev ou npm start).",
   " Tentando reconectar…": " Tentative de reconnexion…",
   " Nova tentativa em {0} s.": " Nouvelle tentative dans {0} s.",
-
-  // client/src/ui/permission.ts
   "só nesta sessão": "seulement pour cette session",
   "neste projeto, só para você": "dans ce projet, seulement pour vous",
   "neste projeto, para todos (versionado)": "dans ce projet, pour tout le monde (versionné)",
@@ -546,8 +503,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Outro": "Autre",
   "Mandar as respostas ao agente": "Envoyer les réponses à l'agent",
   "Responda todas as perguntas (no “Outro”, escreva a resposta)": "Répondez à toutes les questions (dans « Autre », écrivez la réponse)",
-
-  // client/src/ui/provider.ts
   "Conta desconhecida": "Compte inconnu",
   " · plano {0}": " · abonnement {0}",
   "Abra o Claude Code em qualquer projeto{0} e veja seu agente chegar.": "Ouvrez Claude Code dans n'importe quel projet{0} et regardez votre agent arriver.",
@@ -557,23 +512,17 @@ export const FR: Readonly<Record<string, string>> = {
   "Pergunta quando precisa": "Demande quand c'est nécessaire",
   "Pergunta quando um comando falha": "Demande quand une commande échoue",
   "Nunca pergunta": "Ne demande jamais",
-
-  // client/src/ui/roomrename.ts
   "o Habblaud não respondeu": "Habblaud n'a pas répondu",
   "Nome da sala": "Nom de la salle",
   "Enter salva · Esc cancela · vazio volta a “{0}”": "Entrée enregistre · Échap annule · vide revient à « {0} »",
   "Sala renomeada para {0}.": "Salle renommée en {0}.",
   "A sala voltou ao nome da pasta.": "La salle a repris le nom du dossier.",
   "Não deu: {0}": "Échec : {0}",
-
-  // client/src/ui/rows.ts
   "ocioso {0}": "inactif depuis {0}",
   "Ocioso há {0}": "Inactif depuis {0}",
   "{0}, há {1}": "{0}, depuis {1}",
   "agente principal": "agent principal",
   "subagente {0}": "sous-agent {0}",
-
-  // client/src/ui/settings-sound.ts
   "Avisos": "Alertes",
   "Sino quando alguém precisa de você; estalo quando uma tarefa termina.": "Cloche quand quelqu'un a besoin de vous ; petit claquement quand une tâche se termine.",
   "Teclado": "Clavier",
@@ -590,8 +539,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Sons": "Sons",
   "Sons do escritório": "Sons du bureau",
   "Sintetizados no navegador e baixinhos. Com a aba oculta, só o sino de \"precisa de você\".": "Synthétisés dans le navigateur, à faible volume. Onglet masqué : seulement la cloche « a besoin de vous ».",
-
-  // client/src/ui/settings.ts
   "Balões de atividade": "Bulles d'activité",
   "Todos": "Toutes",
   "Importantes": "Importantes",
@@ -621,8 +568,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Modo demonstração ligado.": "Mode démonstration activé.",
   "Modo demonstração desligado.": "Mode démonstration désactivé.",
   "Não foi possível mudar o modo demonstração.": "Impossible de changer le mode démonstration.",
-
-  // client/src/ui/sidebar.ts
   "Atalho: /": "Raccourci : /",
   "Filtrar por conta": "Filtrer par compte",
   "Mostrar a {0} na lista, no feed e nos avisos": "Afficher {0} dans la liste, le fil et les alertes",
@@ -637,8 +582,6 @@ export const FR: Readonly<Record<string, string>> = {
   "agentes": "agents",
   "Sala {0}, {1}": "Salle {0}, {1}",
   "{0}/{1} tarefas": "{0}/{1} tâches",
-
-  // client/src/ui/social.ts
   "Sem partidas ainda": "Aucune partie pour l'instant",
   "vitória": "victoire",
   "vitórias": "victoires",
@@ -653,8 +596,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Bordão: “{0}”": "Réplique culte : « {0} »",
   "Retrospecto contra {0}: {1}": "Bilan contre {0} : {1}",
   "Ver {0}": "Voir {0}",
-
-  // client/src/ui/terminal.ts
   "O terminal só fica disponível quando o Habblaud roda com acesso local (bind 127.0.0.1)": "Le terminal n'est disponible que si Habblaud tourne en accès local (bind 127.0.0.1)",
   "Não foi possível abrir o terminal. O recurso só funciona no acesso local, com o agente ainda aberto.": "Impossible d'ouvrir le terminal. La fonction ne marche qu'en accès local, avec l'agent encore ouvert.",
   "Não foi possível abrir a sessão. O histórico só funciona no acesso local, com o transcript ainda no disco.": "Impossible d'ouvrir la session. L'historique ne marche qu'en accès local, avec le transcript encore sur le disque.",
@@ -707,16 +648,12 @@ export const FR: Readonly<Record<string, string>> = {
   "Nenhuma mensagem nesta sessão ainda.": "Aucun message dans cette session pour l'instant.",
   "↓ Novas mensagens": "↓ Nouveaux messages",
   "↓ Ir para o fim": "↓ Aller à la fin",
-
-  // client/src/ui/termtools.ts
   "Tudo": "Tout",
   "Toda a conversa": "Toute la conversation",
   "Só prompts": "Prompts seuls",
   "Só os seus prompts e as respostas finais do agente": "Seulement vos prompts et les réponses finales de l'agent",
   "Sem ferramentas": "Sans outils",
   "Esconde as ferramentas e os resultados": "Masque les outils et les résultats",
-
-  // client/src/ui/timelapse.ts
   "Reproduzir": "Lire",
   "Dia gravado": "Jour enregistré",
   "Velocidade": "Vitesse",
@@ -743,14 +680,10 @@ export const FR: Readonly<Record<string, string>> = {
   "agente trabalhando": "agent au travail",
   "agentes trabalhando": "agents au travail",
   "{0}× — 1 min de reprodução = {1} h do dia": "{0}× — 1 min de lecture = {1} h de la journée",
-
-  // client/src/ui/toasts.ts
   "Mostrar no escritório": "Afficher dans le bureau",
   "Responder": "Répondre",
   "Responder pelo escritório (aprovar, recusar ou responder a pergunta)": "Répondre depuis le bureau (valider, refuser ou répondre à la question)",
   "Fechar aviso": "Fermer l'alerte",
-
-  // client/src/ui/topbar.ts
   "sala": "salle",
   "salas": "salles",
   "Salas abertas (uma por projeto)": "Salles ouvertes (une par projet)",
@@ -794,14 +727,10 @@ export const FR: Readonly<Record<string, string>> = {
   "Shells rodando: {0} terminar.\n{1}\nClique para ir até {2}.": "Shells en cours : {0} qu'ils se terminent.\n{1}\nCliquez pour y aller.",
   "o agente espera": "l'agent attend",
   "os agentes esperam": "les agents attendent",
-
-  // client/src/ui/update.ts
   "Recarregar agora": "Recharger maintenant",
   "Depois": "Plus tard",
   "O Habblaud foi atualizado. Recarregando em {0} s…": "Habblaud a été mis à jour. Rechargement dans {0} s…",
   "O Habblaud foi atualizado. Recarregue a página quando quiser.": "Habblaud a été mis à jour. Rechargez la page quand vous voulez.",
-
-  // client/src/ui/usage.ts
   "cache do /usage do Claude Code": "cache du /usage de Claude Code",
   "ao vivo (statusline do Claude Code)": "en direct (statusline de Claude Code)",
   "arquivos do Codex": "fichiers de Codex",
@@ -851,8 +780,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Números antigos: refletem a última leitura, não o uso de agora.": "Chiffres anciens : ils reflètent la dernière lecture, pas l'utilisation actuelle.",
   "Cache do /usage: atualiza quando alguém roda /usage nesta conta.": "Cache du /usage : se met à jour quand quelqu'un lance /usage avec ce compte.",
   "Uma das janelas já reiniciou depois da última leitura.": "Une des fenêtres s'est déjà réinitialisée depuis la dernière lecture.",
-
-  // client/src/ui/version.ts
   "Este servidor não verifica versões novas.": "Ce serveur ne vérifie pas les nouvelles versions.",
   "Verificação de versão nova desligada (HABBLAUD_UPDATE_CHECK=0).": "Vérification des nouvelles versions désactivée (HABBLAUD_UPDATE_CHECK=0).",
   "Verificação de versão nova desligada: o package.json não aponta um repositório no GitHub.": "Vérification des nouvelles versions désactivée : le package.json n'indique pas de dépôt GitHub.",
@@ -880,28 +807,18 @@ export const FR: Readonly<Record<string, string>> = {
   "Consultando o GitHub…": "Consultation de GitHub…",
   "Ver o que mudou na v{0}": "Voir ce qui a changé dans la v{0}",
   "Não deu para falar com o servidor do Habblaud.": "Impossible de joindre le serveur Habblaud.",
-
-  // client/src/ui/widgets.ts
   "Agente do Codex (OpenAI)": "Agent Codex (OpenAI)",
   "Principal": "Principal",
   "Subagente: {0}{1}": "Sous-agent : {0}{1}",
   " (em segundo plano)": " (en arrière-plan)",
   "Sem atividade ainda": "Pas encore d'activité",
-
-  // client/src/world/render/overlay.ts
   "Recepção": "Accueil",
   "Banheiros": "Toilettes",
   "Copa": "Cuisine",
   "Lounge": "Salon",
-
-  // client/src/world/sim/shell.ts
   "Monitorando um processo": "Surveille un processus",
   "Comando em segundo plano": "Commande en arrière-plan",
-
-  // client/src/world/sim/sim.ts
   "Entregando: {0}": "Remet : {0}",
-
-  // client/src/world/social/gathering.ts
   "Vendo TV": "Regarde la télé",
   "Jogando videogame": "Joue aux jeux vidéo",
   "Duelo no fliperama": "Duel à l'arcade",
@@ -910,8 +827,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Conversando": "Discute",
   "Jokenpô": "Chifoumi",
   "Se arrumando no espelho": "Se recoiffe devant le miroir",
-
-  // client/src/world/social/lines.ts
   "Bora ver TV? 📺": "On regarde la télé ? 📺",
   "Sessão pipoca? 🍿": "Séance pop-corn ? 🍿",
   "Vai começar o programa!": "L'émission commence !",
@@ -1119,8 +1034,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Bom dia! ☀️": "Bonjour ! ☀️",
   "Que fome… almoço? 🍽️": "J'ai faim… on déjeune ? 🍽️",
   "Ainda aqui a essa hora? 🌙": "Encore là à cette heure-ci ? 🌙",
-
-  // client/src/world/social/persona.ts
   "Competição": "Compétition",
   "Adora competir: desafia os colegas no ping-pong, no videogame e no jokenpô.": "Adore la compétition : défie ses collègues au ping-pong, aux jeux vidéo et au chifoumi.",
   "Apostas": "Paris",
@@ -1158,8 +1071,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Tamo junto!": "On est ensemble !",
   "Sem estresse.": "Pas de stress.",
   "Vai dar certo!": "Ça va marcher !",
-
-  // client/src/world/social/social.ts
   "no jokenpô": "au chifoumi",
   "no pingue-pongue": "au ping-pong",
   "no videogame": "aux jeux vidéo",
@@ -1177,16 +1088,12 @@ export const FR: Readonly<Record<string, string>> = {
   "Vendo {0} na TV": "Regarde {0} à la télé",
   " (a caminho)": " (en route)",
   " · valendo 🪙{0}": " · mise 🪙{0}",
-
-  // client/src/world/social/wallet.ts
   "Chegou ao escritório": "Arrivé au bureau",
   "1 tarefa já concluída": "1 tâche déjà terminée",
   "{0} tarefas já concluídas": "{0} tâches déjà terminées",
   "Tarefa concluída: {0}": "Tâche terminée : {0}",
   "Perdeu {0} para {1}": "A perdu {0} contre {1}",
   "Ganhou {0} de {1}": "A gagné {0} contre {1}",
-
-  // scripts/codex-bridge.ts
   "--port precisa de um número entre 1 e 65535.": "--port attend un nombre entre 1 et 65535.",
   "opção desconhecida: {0}\n\n{1}": "option inconnue : {0}\n\n{1}",
   "mensagem sem id": "message sans id",
@@ -1200,8 +1107,6 @@ export const FR: Readonly<Record<string, string>> = {
   "conectado: os agentes do Codex já recebem mensagens pelo escritório.": "connecté : les agents Codex reçoivent maintenant les messages du bureau.",
   "[codex-bridge] Erro: {0}": "[codex-bridge] Erreur : {0}",
   "[codex-bridge] Erro inesperado: {0}": "[codex-bridge] Erreur inattendue : {0}",
-
-  // scripts/codex-install.ts
   "Aguardando resposta no Habblaud…": "En attente de réponse dans Habblaud…",
   "Uso: npm run codex:<install|uninstall|status> [-- opções]\n\n  install     acrescenta os hooks do Habblaud no hooks.json de cada pasta do Codex (faz backup antes)\n  uninstall   tira os hooks do Habblaud de cada pasta (os outros hooks ficam)\n  status      mostra se os hooks estão lá e se o Habblaud está respondendo\n\nOpções:\n  --dry-run        mostra o que mudaria, sem gravar nada\n  --conta <id>     só a pasta desta conta (o nome da pasta, ex.: .codex)\n  --port <n>       porta do Habblaud (padrão: HABBLAUD_PORT ou {0})\n  --espera <s>     quanto o Codex espera sua resposta no Habblaud antes de pedir a aprovação no terminal\n                   (padrão: {1} s; entre {2} e {3})\n  --node <caminho> o Node {4}+ que roda os hooks (padrão: o `node` do shell de login, se for {5}+;\n                   senão o primeiro {6}+ entre /opt/homebrew/bin, /usr/local/bin e o deste comando)\n  -h, --help       mostra esta ajuda\n\nPastas: HABBLAUD_CODEX_DIRS (lista separada por vírgula) ou CODEX_HOME e as pastas ~/.codex* do Codex.\nDepois de instalar, abra o Codex e aprove os hooks do Habblaud em /hooks.": "Usage : npm run codex:<install|uninstall|status> [-- options]\n\n  install     ajoute les hooks de Habblaud dans le hooks.json de chaque dossier Codex (avec sauvegarde avant)\n  uninstall   retire les hooks de Habblaud de chaque dossier (les autres hooks restent)\n  status      indique si les hooks sont en place et si Habblaud répond\n\nOptions :\n  --dry-run        montre ce qui changerait, sans rien écrire\n  --conta <id>     seulement le dossier de ce compte (le nom du dossier, ex. : .codex)\n  --port <n>       port de Habblaud (par défaut : HABBLAUD_PORT ou {0})\n  --espera <s>     combien de temps Codex attend votre réponse dans Habblaud avant de demander la validation dans le terminal\n                   (par défaut : {1} s ; entre {2} et {3})\n  --node <chemin>  le Node {4}+ qui lance les hooks (par défaut : le `node` du shell de connexion, s'il est en {5}+ ;\n                   sinon le premier {6}+ parmi /opt/homebrew/bin, /usr/local/bin et celui de cette commande)\n  -h, --help       affiche cette aide\n\nDossiers : HABBLAUD_CODEX_DIRS (liste séparée par des virgules) ou CODEX_HOME et les dossiers ~/.codex* de Codex.\nAprès l'installation, ouvrez Codex et validez les hooks de Habblaud dans /hooks.",
   "\"hooks\" em formato desconhecido; nada foi alterado": "\"hooks\" dans un format inconnu ; rien n'a été modifié",
@@ -1256,8 +1161,6 @@ export const FR: Readonly<Record<string, string>> = {
   "A configuração em ~/.habblaud/codex-hook.json fica (só o hook a lê).": "La configuration dans ~/.habblaud/codex-hook.json est conservée (seul le hook la lit).",
   "[codex] Erro: {0}": "[codex] Erreur : {0}",
   "[codex] Erro inesperado: {0}": "[codex] Erreur inattendue : {0}",
-
-  // scripts/docker-up.ts
   "Uso: npm run docker:up [-- opções]\n\nOpções:\n  --no-build   sobe sem reconstruir a imagem\n  --down       derruba o container (o mesmo que npm run docker:down)\n  -h, --help   mostra esta ajuda\n\nVariáveis: HABBLAUD_PORT (porta no host, padrão {0}), HABBLAUD_CLAUDE_DIRS\n(config dirs separados por vírgula, se as contas não estiverem em ~/.claude*), HABBLAUD_CODEX_DIRS\n(pastas do Codex, se não estiverem em ~/.codex* nem em CODEX_HOME) e HABBLAUD_CODEX=0 (sem o Codex).": "Usage : npm run docker:up [-- options]\n\nOptions :\n  --no-build   démarre sans reconstruire l'image\n  --down       arrête le conteneur (comme npm run docker:down)\n  -h, --help   affiche cette aide\n\nVariables : HABBLAUD_PORT (port sur l'hôte, par défaut {0}), HABBLAUD_CLAUDE_DIRS\n(dossiers de configuration séparés par des virgules, si les comptes ne sont pas dans ~/.claude*), HABBLAUD_CODEX_DIRS\n(dossiers Codex, s'ils ne sont ni dans ~/.codex* ni dans CODEX_HOME) et HABBLAUD_CODEX=0 (sans Codex).",
   "[docker-up] Atenção: {0}": "[docker-up] Attention : {0}",
   "uso atualizado": "utilisation à jour",
@@ -1314,8 +1217,6 @@ export const FR: Readonly<Record<string, string>> = {
   "não consegui conferir o mod do Habblaud ({0}).": "impossible de vérifier le mod Habblaud ({0}).",
   "[docker-up] Erro: {0}": "[docker-up] Erreur : {0}",
   "[docker-up] Erro inesperado:": "[docker-up] Erreur inattendue :",
-
-  // scripts/hooks-install.ts
   "Aguardando resposta no Habblaud": "En attente de réponse dans Habblaud",
   "Uso: npm run hooks:<install|uninstall|status> [-- opções]\n\n  install     acrescenta o hook de permissão do Habblaud em cada conta (faz backup do settings.json)\n  uninstall   tira o hook do Habblaud de cada conta (os outros hooks ficam)\n  status      mostra se o hook está instalado e se o Habblaud está respondendo pedidos\n\nOpções:\n  --dry-run        mostra o que mudaria, sem gravar nada\n  --node <cmd>     comando do node usado no hook (padrão: detectado no PATH)\n  --port <n>       porta do Habblaud (padrão: HABBLAUD_PORT ou {0})\n  --timeout <s>    quanto o hook espera sua resposta no Habblaud antes de devolver o pedido ao terminal\n                   (padrão: {1} s)\n  -h, --help       mostra esta ajuda\n\nContas: as mesmas do servidor (~/.claude* com projects/ ou sessions/, CLAUDE_CONFIG_DIR ou\nHABBLAUD_CLAUDE_DIRS).": "Usage : npm run hooks:<install|uninstall|status> [-- options]\n\n  install     ajoute le hook de permission de Habblaud dans chaque compte (avec sauvegarde du settings.json)\n  uninstall   retire le hook de Habblaud de chaque compte (les autres hooks restent)\n  status      indique si le hook est installé et si Habblaud traite les demandes\n\nOptions :\n  --dry-run        montre ce qui changerait, sans rien écrire\n  --node <cmd>     commande node utilisée par le hook (par défaut : détectée dans le PATH)\n  --port <n>       port de Habblaud (par défaut : HABBLAUD_PORT ou {0})\n  --timeout <s>    combien de temps le hook attend votre réponse dans Habblaud avant de renvoyer la demande au terminal\n                   (par défaut : {1} s)\n  -h, --help       affiche cette aide\n\nComptes : les mêmes que le serveur (~/.claude* avec projects/ ou sessions/, CLAUDE_CONFIG_DIR ou\nHABBLAUD_CLAUDE_DIRS).",
   "atualizado (novo caminho do Habblaud, do node ou das opções)": "mis à jour (nouveau chemin de Habblaud, de node ou nouvelles options)",
@@ -1335,8 +1236,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Para desfazer: npm run hooks:uninstall": "Pour annuler : npm run hooks:uninstall",
   "[hooks] Erro: {0}": "[hooks] Erreur : {0}",
   "[hooks] Erro inesperado: {0}": "[hooks] Erreur inattendue : {0}",
-
-  // scripts/mod-install.ts
   "Uso: npm run mod:<install|uninstall|status> [-- opções]\n\n  install     instala o mod do Habblaud no Claude Code de cada conta (marketplace desta pasta + plugins)\n              e tira o que ele substitui: o tap de statusline e o hook de permissão antigos e o mod do\n              nome antigo (codetown)\n  uninstall   tira os plugins e o marketplace do Habblaud de cada conta (e os do nome antigo, se sobraram)\n  status      mostra, por conta, o marketplace, os plugins (e versões) e o que sobrou do jeito antigo\n\nOpções:\n  --sem-permissoes   não instala o plugin de responder permissões pelo escritório (e mantém o hook antigo)\n  --sem-mensagens    não instala o plugin de mandar mensagens pelo escritório (um já instalado continua)\n  --conta <pasta>    só esta conta (ex.: --conta ~/.claude-conta2); pode repetir\n  --dry-run          mostra o que faria, sem instalar nem gravar nada\n  --claude <cmd>     comando do Claude Code (padrão: claude, do PATH)\n  -h, --help         mostra esta ajuda\n\nPrecisa do Claude Code {0} ou mais novo. Em versões anteriores, use o jeito antigo:\nnpm run usage:install (uso ao vivo) e npm run hooks:install (responder permissões); mandar mensagens pelo\nescritório só existe com o mod.\n\nContas: as mesmas do servidor (~/.claude* com projects/ ou sessions/, CLAUDE_CONFIG_DIR ou\nHABBLAUD_CLAUDE_DIRS). Uso capturado em HABBLAUD_USAGE_DIR (padrão ~/.habblaud/usage).": "Usage : npm run mod:<install|uninstall|status> [-- options]\n\n  install     installe le mod Habblaud dans Claude Code pour chaque compte (marketplace de ce dossier + plugins)\n              et retire ce qu'il remplace : l'ancienne dérivation de statusline, l'ancien hook de permission et le mod\n              de l'ancien nom (codetown)\n  uninstall   retire les plugins et le marketplace de Habblaud de chaque compte (et ceux de l'ancien nom, s'il en reste)\n  status      affiche, par compte, le marketplace, les plugins (et leurs versions) et ce qui reste de l'ancienne méthode\n\nOptions :\n  --sem-permissoes   n'installe pas le plugin pour répondre aux permissions depuis le bureau (et garde l'ancien hook)\n  --sem-mensagens    n'installe pas le plugin pour envoyer des messages depuis le bureau (un plugin déjà installé reste)\n  --conta <dossier>  seulement ce compte (ex. : --conta ~/.claude-conta2) ; peut être répété\n  --dry-run          montre ce qui serait fait, sans rien installer ni écrire\n  --claude <cmd>     commande de Claude Code (par défaut : claude, du PATH)\n  -h, --help         affiche cette aide\n\nNécessite Claude Code {0} ou plus récent. Pour les versions précédentes, utilisez l'ancienne méthode :\nnpm run usage:install (utilisation en direct) et npm run hooks:install (répondre aux permissions) ; l'envoi de messages\ndepuis le bureau n'existe qu'avec le mod.\n\nComptes : les mêmes que le serveur (~/.claude* avec projects/ ou sessions/, CLAUDE_CONFIG_DIR ou\nHABBLAUD_CLAUDE_DIRS). Utilisation capturée dans HABBLAUD_USAGE_DIR (par défaut ~/.habblaud/usage).",
   "o comando \"{0}\" não foi encontrado no PATH": "la commande \"{0}\" est introuvable dans le PATH",
   "\"{0} {1}\" não terminou em {2} s": "\"{0} {1}\" ne s'est pas terminé en {2} s",
@@ -1442,8 +1341,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Mod atualizado para {0} na {1}; sessões abertas: /reload-plugins": "Mod mis à jour en {0} pour {1} ; sessions ouvertes : /reload-plugins",
   "[mod] Erro: {0}": "[mod] Erreur : {0}",
   "[mod] Erro inesperado: {0}": "[mod] Erreur inattendue : {0}",
-
-  // scripts/statusline-install.ts
   "Uso: npm run usage:<install|uninstall|status> [-- opções]\n\n  install     envolve o statusline de cada conta com o tap do Habblaud (faz backup do settings.json)\n  uninstall   restaura o statusline original de cada conta\n  status      mostra se o tap está instalado e quando chegou o último uso de cada conta\n\nOpções:\n  --dry-run        mostra o que mudaria, sem gravar nada\n  --node <cmd>     comando do node usado no statusline (padrão: detectado no PATH)\n  -h, --help       mostra esta ajuda\n\nContas: as mesmas do servidor (~/.claude* com projects/ ou sessions/, CLAUDE_CONFIG_DIR ou\nHABBLAUD_CLAUDE_DIRS). Uso capturado em HABBLAUD_USAGE_DIR (padrão ~/.habblaud/usage).": "Usage : npm run usage:<install|uninstall|status> [-- options]\n\n  install     enveloppe la statusline de chaque compte avec la dérivation de Habblaud (avec sauvegarde du settings.json)\n  uninstall   restaure la statusline d'origine de chaque compte\n  status      indique si la dérivation est installée et quand la dernière utilisation de chaque compte est arrivée\n\nOptions :\n  --dry-run        montre ce qui changerait, sans rien écrire\n  --node <cmd>     commande node utilisée par la statusline (par défaut : détectée dans le PATH)\n  -h, --help       affiche cette aide\n\nComptes : les mêmes que le serveur (~/.claude* avec projects/ ou sessions/, CLAUDE_CONFIG_DIR ou\nHABBLAUD_CLAUDE_DIRS). Utilisation capturée dans HABBLAUD_USAGE_DIR (par défaut ~/.habblaud/usage).",
   "statusLine em formato desconhecido; nada foi alterado": "statusLine dans un format inconnu ; rien n'a été modifié",
   "sem statusline antes: criado um que só captura o uso (não imprime nada)": "pas de statusline avant : création d'une statusline qui capture seulement l'utilisation (n'affiche rien)",
@@ -1473,36 +1370,24 @@ export const FR: Readonly<Record<string, string>> = {
   "Uso capturado em {0}. Para desfazer: npm run usage:uninstall": "Utilisation capturée dans {0}. Pour annuler : npm run usage:uninstall",
   "[usage] Erro: {0}": "[usage] Erreur : {0}",
   "[usage] Erro inesperado: {0}": "[usage] Erreur inattendue : {0}",
-
-  // server/accounts/service.ts
   "Falha ao detectar contas: {0}": "Échec de la détection des comptes : {0}",
   "Falha ao ler o uso do statusline: {0}": "Échec de la lecture de l'utilisation de la statusline : {0}",
-
-  // server/codex/http.ts
   "Eventos do Codex: falha ao aplicar um evento ({0}).": "Événements Codex : échec de l'application d'un événement ({0}).",
-
-  // server/config.ts
   "HABBLAUD_BIND não chegou ao container, então a porta pode estar exposta na rede": "HABBLAUD_BIND n'est pas arrivé jusqu'au conteneur, le port peut donc être exposé sur le réseau",
   "a porta está exposta na rede: HABBLAUD_BIND={0}": "le port est exposé sur le réseau : HABBLAUD_BIND={0}",
   "a porta está exposta na rede: HABBLAUD_HOST={0}": "le port est exposé sur le réseau : HABBLAUD_HOST={0}",
   "mesma trava do terminal: {0}": "même verrou que le terminal : {0}",
-
-  // server/history/daystats.ts
   "Não foi possível ler {0} ({1}).": "Impossible de lire {0} ({1}).",
   "{0} está ilegível; guardado como .corrupt e o dia recomeça do zero.": "{0} est illisible ; conservé en .corrupt et la journée repart de zéro.",
   "Não foi possível gravar {0} ({1}); as estatísticas seguem só na memória.": "Impossible d'écrire {0} ({1}) ; les statistiques restent seulement en mémoire.",
   "Não foi possível apagar {0} ({1}).": "Impossible de supprimer {0} ({1}).",
   "Falha nas estatísticas do dia ({0}): {1}": "Échec des statistiques de la journée ({0}) : {1}",
-
-  // server/history/timeline.ts
   "Snapshot ignorado pela linha do tempo: {0}": "Instantané ignoré par la chronologie : {0}",
   "Falha no gravador da linha do tempo: {0}": "Échec de l'enregistreur de chronologie : {0}",
   "Linha do tempo de {0} chegou a {1} MB: a gravação para até a virada do dia.": "La chronologie du {0} a atteint {1} Mo : l'enregistrement s'arrête jusqu'au jour suivant.",
   "Não foi possível gravar a linha do tempo em {0} ({1}); tento de novo em {2} s.": "Impossible d'écrire la chronologie dans {0} ({1}) ; nouvelle tentative dans {2} s.",
   "Linha do tempo: voltou a gravar.": "Chronologie : l'enregistrement a repris.",
   "Não foi possível apagar {0} da linha do tempo ({1}).": "Impossible de supprimer {0} de la chronologie ({1}).",
-
-  // server/http/app.ts
   "agente não encontrado: só o agente principal de uma sessão aberta tem personagem editável": "agent introuvable : seul l'agent principal d'une session ouverte a un personnage modifiable",
   "envie o corpo como JSON (Content-Type: application/json)": "envoyez le corps en JSON (Content-Type: application/json)",
   "corpo grande demais": "corps trop volumineux",
@@ -1525,25 +1410,17 @@ export const FR: Readonly<Record<string, string>> = {
   "renomear salas só pelo próprio computador (http://localhost)": "renommage des salles uniquement depuis l'ordinateur lui-même (http://localhost)",
   "sala não encontrada": "salle introuvable",
   "rota desconhecida": "route inconnue",
-
-  // server/http/guard.ts
   "Host não permitido: {0}. Abra o Habblaud por http://localhost (ou pelo IP) ": "Hôte non autorisé : {0}. Ouvrez Habblaud via http://localhost (ou par l'IP) ",
   "ou libere o nome em HABBLAUD_ALLOWED_HOSTS.": "ou autorisez le nom dans HABBLAUD_ALLOWED_HOSTS.",
   "Origem não permitida.": "Origine non autorisée.",
   "Envie o corpo como JSON (Content-Type: application/json).": "Envoyez le corps en JSON (Content-Type: application/json).",
-
-  // server/http/sessions.ts
   "Histórico de sessões: falha ao listar ({0}).": "Historique des sessions : échec du listage ({0}).",
   "não foi possível listar as sessões": "impossible de lister les sessions",
   "endereço inválido": "adresse invalide",
-
-  // server/http/static.ts
   "Método não permitido": "Méthode non autorisée",
   "Cliente não compilado. Rode \"npm run build\" (ou use \"npm run dev\").": "Client non compilé. Lancez \"npm run build\" (ou utilisez \"npm run dev\").",
   "Caminho inválido": "Chemin invalide",
   "Não encontrado": "Introuvable",
-
-  // server/http/stats.ts
   "parâmetro \"{0}\" repetido": "paramètre « {0} » répété",
   "fuso inválido: use um nome IANA, ex.: America/Sao_Paulo": "fuseau invalide : utilisez un nom IANA, ex. : Europe/Paris",
   "fuso inválido": "fuseau invalide",
@@ -1554,21 +1431,15 @@ export const FR: Readonly<Record<string, string>> = {
   "estatísticas indisponíveis": "statistiques indisponibles",
   "o modo demonstração está desligado": "le mode démonstration est désactivé",
   "sem estatísticas para este dia": "pas de statistiques pour ce jour",
-
-  // server/http/terminal.ts
   "Terminal: linha do transcript ignorada ({0}).": "Terminal : ligne du transcript ignorée ({0}).",
   "terminais abertos demais (máximo de {0}); feche algum e tente de novo": "trop de terminaux ouverts (maximum {0}) ; fermez-en un et réessayez",
   "Terminal de {0}: não foi possível ler o transcript ({1}).": "Terminal de {0} : impossible de lire le transcript ({1}).",
   "não foi possível ler o transcript": "impossible de lire le transcript",
   "transcript do agente não encontrado": "transcript de l'agent introuvable",
   "Terminal de {0}: {1}": "Terminal de {0} : {1}",
-
-  // server/http/timeline.ts
   "dia inválido: use AAAA-MM-DD": "jour invalide : utilisez AAAA-MM-JJ",
   "não é arquivo": "ce n'est pas un fichier",
   "nada gravado neste dia": "rien d'enregistré ce jour-là",
-
-  // server/index.ts
   "Falha no relógio do escritório: {0}": "Échec de l'horloge du bureau : {0}",
   "Erro ao responder {0} {1}: {2}": "Erreur en répondant à {0} {1} : {2}",
   "A porta {0} já está em uso (defina HABBLAUD_PORT para usar outra).": "Le port {0} est déjà utilisé (définissez HABBLAUD_PORT pour en utiliser un autre).",
@@ -1590,7 +1461,6 @@ export const FR: Readonly<Record<string, string>> = {
   "   Responder pelo escritório: {0}.": "   Réponse depuis le bureau : {0}.",
   "ligado (precisa do mod: npm run mod:install; ou do hook antigo: npm run hooks:install)": "activée (nécessite le mod : npm run mod:install ; ou l'ancien hook : npm run hooks:install)",
   "desligado (mesma trava do terminal)": "désactivée (même verrou que le terminal)",
-  "   Mensagens pelo escritório: ligadas (precisa do plugin habblaud-mensagens: npm run mod:install).": "   Messages depuis le bureau : activés (plugin habblaud-mensagens requis : npm run mod:install).",
   "   Mensagens pelo escritório: desligadas ({0}).": "   Messages depuis le bureau : désactivés ({0}).",
   "   Mensagens ao Codex: pelo codex queue ({0}).": "   Messages à Codex : via codex queue ({0}).",
   "   Mensagens ao Codex: pelo auxiliar do host (deixe npm run codex:bridge rodando no Mac).": "   Messages à Codex : via l'auxiliaire de l'hôte (laissez tourner npm run codex:bridge sur le Mac).",
@@ -1599,8 +1469,6 @@ export const FR: Readonly<Record<string, string>> = {
   "   Versão nova: verificação desligada ({0}).": "   Nouvelle version : vérification désactivée ({0}).",
   "package.json sem repositório no GitHub": "package.json sans dépôt GitHub",
   "Encerrando ({0})…": "Arrêt en cours ({0})…",
-
-  // server/legacy.ts
   "no ambiente": "dans l'environnement",
   "{0} {1}: {2}. Renomeie para valer de novo.": "{0} {1} : {2}. Renommez-le pour qu'il soit de nouveau pris en compte.",
   "variável do nome antigo ignorada": "variable de l'ancien nom ignorée",
@@ -1609,20 +1477,14 @@ export const FR: Readonly<Record<string, string>> = {
   "não consegui levar ~/.{0} para ~/.habblaud ({1}); mova a pasta à mão.": "impossible de déplacer ~/.{0} vers ~/.habblaud ({1}) ; déplacez le dossier à la main.",
   "~/.{0} (nome antigo) agora é ~/.habblaud.": "~/.{0} (ancien nom) est maintenant ~/.habblaud.",
   "de ~/.{0} (nome antigo) para ~/.habblaud: {1}.": "de ~/.{0} (ancien nom) vers ~/.habblaud : {1}.",
-
-  // server/messages/codex.ts
   "id de thread do Codex inválido": "id de fil Codex invalide",
   "pasta da conta do Codex inválida": "dossier du compte Codex invalide",
   "o codex queue não respondeu em {0} s (a mensagem pode ter entrado na fila mesmo assim)": "codex queue n'a pas répondu en {0} s (le message est peut-être quand même entré dans la file)",
   "não consegui rodar o Codex ({0})": "impossible de lancer Codex ({0})",
   "o codex queue falhou (código {0})": "codex queue a échoué (code {0})",
   "a mensagem tem caracteres que não dá para mandar ao Codex": "le message contient des caractères impossibles à envoyer à Codex",
-
-  // server/messages/http.ts
   "já há {0} mensagens esperando a entrega para este agente: espere a sessão buscar": "{0} messages attendent déjà d'être remis à cet agent : attendez que la session les récupère",
   "mensagem desconhecida: ela já foi resolvida há mais de 10 min ou o Habblaud reiniciou": "message inconnu : il a été traité il y a plus de 10 min ou Habblaud a redémarré",
-
-  // server/messages/registry.ts
   "a sessão não buscou a mensagem: o plugin habblaud-mensagens está instalado e a sessão aberta?": "la session n'a pas récupéré le message : le plugin habblaud-mensagens est-il installé et la session ouverte ?",
   "a sessão não confirmou a entrega": "la session n'a pas confirmé la remise",
   "a sessão não aceitou a mensagem": "la session n'a pas accepté le message",
@@ -1639,12 +1501,8 @@ export const FR: Readonly<Record<string, string>> = {
   "a mensagem passa de 20.000 caracteres": "le message dépasse 20 000 caractères",
   "Mensagens: falha no relógio ({0}).": "Messages : échec de l'horloge ({0}).",
   "esperado um objeto JSON ({})": "objet JSON attendu ({})",
-
-  // server/model/names.ts
   "names.json ilegível ({0}); começando do zero.": "names.json illisible ({0}) ; on repart de zéro.",
   "Não foi possível gravar {0} ({1}); os nomes valem só nesta execução.": "Impossible d'écrire {0} ({1}) ; les noms ne valent que pour cette exécution.",
-
-  // server/model/office.ts
   "⏳ {0} está esperando o shell em {1}{2}": "⏳ {0} attend le shell dans {1}{2}",
   "o trabalho": "le travail",
   "📦 {0} entregou {1} para {2}": "📦 {0} a remis {1} à {2}",
@@ -1655,12 +1513,8 @@ export const FR: Readonly<Record<string, string>> = {
   "✏️ {0} agora é {1} em {2}": "✏️ {0} s'appelle maintenant {1} dans {2}",
   "{0} já está no escritório em {1}": "{0} est déjà dans le bureau, dans {1}",
   "{0} já é o personagem de {1}": "{0} est déjà le personnage de {1}",
-
-  // server/model/room-aliases.ts
   "rooms.json ilegível ({0}); sem nomes de sala personalizados.": "rooms.json illisible ({0}) ; pas de noms de salle personnalisés.",
   "Não consegui gravar {0}: {1}": "Impossible d'écrire {0} : {1}",
-
-  // server/permissions/codex.ts
   "Rede({0})": "Réseau({0})",
   "Acessar a rede: {0}": "Accéder au réseau : {0}",
   "Editando {0} arquivos": "Modifie {0} fichiers",
@@ -1669,30 +1523,22 @@ export const FR: Readonly<Record<string, string>> = {
   "Aplicando um patch": "Applique un patch",
   "Pedindo mais permissões": "Demande plus de permissions",
   "Digitando num processo do terminal": "Tape dans un processus du terminal",
-
-  // server/permissions/http.ts
   "pedido desconhecido": "demande inconnue",
   "pedido desconhecido: já foi respondido, expirou ou foi respondido no terminal": "demande inconnue : elle a déjà reçu une réponse, a expiré ou a été traitée dans le terminal",
   "este pedido já foi respondido": "cette demande a déjà reçu une réponse",
   "sugestão de regra desconhecida para este pedido": "suggestion de règle inconnue pour cette demande",
   "resposta que não serve para este pedido: pergunta se responde com \"answer\" (cada pergunta uma vez, com as opções dela); os outros pedidos, com \"allow\" ou \"deny\"": "réponse inadaptée à cette demande : une question se répond avec « answer » (chaque question une fois, avec ses options) ; les autres demandes, avec « allow » ou « deny »",
   "o Codex não aceita interromper nem \"sempre permitir\" pelo Habblaud: aprove, recuse (com um motivo, se quiser) ou responda no terminal": "Codex n'accepte ni « interrompre » ni « toujours autoriser » via Habblaud : validez, refusez (avec un motif si vous voulez) ou répondez dans le terminal",
-
-  // server/permissions/registry.ts
   "esperado o JSON do hook PermissionRequest (session_id e tool_name)": "JSON du hook PermissionRequest attendu (session_id et tool_name)",
   "Pedidos de permissão: falha no relógio ({0}).": "Demandes de permission : échec de l'horloge ({0}).",
   " (subagente {0})": " (sous-agent {0})",
   "Pergunta: {0}": "Question : {0}",
   "Pede permissão: {0}": "Demande la permission : {0}",
-
-  // server/sources/codex/history.ts
   "id de sessão inválido": "id de session invalide",
   "conta desconhecida": "compte inconnu",
   "sessão não encontrada": "session introuvable",
   "sessão compactada pelo Codex (.zst): ainda não dá para ler": "session compressée par Codex (.zst) : pas encore lisible",
   "Histórico do Codex: rollout ilegível ({0}).": "Historique Codex : rollout illisible ({0}).",
-
-  // server/sources/codex/rollout.ts
   "Recebeu “{0}”": "A reçu « {0} »",
   "Interagindo com um comando": "Interagit avec une commande",
   "Executando código": "Exécute du code",
@@ -1703,8 +1549,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Pedindo permissões": "Demande des permissions",
   "[imagem]": "[image]",
   "Código de saída {0}": "Code de sortie {0}",
-
-  // server/sources/codex/source.ts
   "Agente principal (Codex)": "Agent principal (Codex)",
   "Subagente (Codex)": "Sous-agent (Codex)",
   "Codex: falha no ciclo de leitura: {0}": "Codex : échec du cycle de lecture : {0}",
@@ -1713,8 +1557,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Codex: rollout de {0} ilegível ({1}).": "Codex : rollout de {0} illisible ({1}).",
   "Codex: não foi possível ler o início de um rollout ({0}).": "Codex : impossible de lire le début d'un rollout ({0}).",
   "Codex: evento de hook ignorado ({0}).": "Codex : événement de hook ignoré ({0}).",
-
-  // server/sources/codex/terminal.ts
   "Conversa compactada": "Conversation compactée",
   "Erro: {0}": "Erreur : {0}",
   "desconhecido": "inconnu",
@@ -1724,20 +1566,12 @@ export const FR: Readonly<Record<string, string>> = {
   "Apagado": "Supprimé",
   "Alterado": "Modifié",
   "A mudança não foi aplicada": "La modification n'a pas été appliquée",
-
-  // server/sources/history.ts
   "Histórico de sessões: transcript ilegível ({0}).": "Historique des sessions : transcript illisible ({0}).",
-
-  // server/sources/registry.ts
   "pasta sessions/ não encontrada": "dossier sessions/ introuvable",
   "sessions/ ilegível ({0})": "sessions/ illisible ({0})",
-
-  // server/sources/source.ts
   "Fonte de agentes {0}: falha ao iniciar ({1}).": "Source d'agents {0} : échec du démarrage ({1}).",
   "Fonte de agentes {0}: falha ao parar ({1}).": "Source d'agents {0} : échec de l'arrêt ({1}).",
   "Histórico de sessões ({0}): falha ao listar ({1}).": "Historique des sessions ({0}) : échec du listage ({1}).",
-
-  // server/sources/terminal.ts
   "(sem título)": "(sans titre)",
   "TodoWrite({0}/{1} concluídas)": "TodoWrite({0}/{1} terminées)",
   "Resumo da conversa compactada": "Résumé de la conversation compactée",
@@ -1755,8 +1589,6 @@ export const FR: Readonly<Record<string, string>> = {
   " (até {0} vezes)": " (jusqu'à {0} fois)",
   "Erro da API{0}{1}": "Erreur de l'API{0}{1}",
   "Recapitulação": "Récapitulatif",
-
-  // server/sources/watcher.ts
   "Falha no ciclo de leitura: {0}": "Échec du cycle de lecture : {0}",
   "Sessão {0}: {1}": "Session {0} : {1}",
   "Agente {0}": "Agent {0}",
@@ -1764,8 +1596,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Não foi possível ler o início de um transcript ({0}).": "Impossible de lire le début d'un transcript ({0}).",
   "Subagente {0} ignorado: {1}": "Sous-agent {0} ignoré : {1}",
   "Subagente {0}: {1}": "Sous-agent {0} : {1}",
-
-  // server/updates/checker.ts
   "updates.json ilegível ({0}); verificando de novo.": "updates.json illisible ({0}) ; nouvelle vérification.",
   "Verificação de versão nova falhou: {0}.": "La vérification de nouvelle version a échoué : {0}.",
   "A release mais recente de {0} tem uma tag fora do padrão de versão ({1}): ignorada.": "La release la plus récente de {0} a un tag hors du format de version ({1}) : ignorée.",
@@ -1775,8 +1605,6 @@ export const FR: Readonly<Record<string, string>> = {
   "⬆️  Nova versão do Habblaud: v{0} (em uso: v{1}). Novidades: {2}": "⬆️  Nouvelle version de Habblaud : v{0} (utilisée : v{1}). Nouveautés : {2}",
   "o GitHub não respondeu a tempo": "GitHub n'a pas répondu à temps",
   "sem conexão com o GitHub": "pas de connexion avec GitHub",
-
-  // shared/activity.ts
   "[chave privada]": "[clé privée]",
   "{0} e mais {1}": "{0} et {1} de plus",
   "Fazendo uma requisição HTTP": "Fait une requête HTTP",
@@ -1923,23 +1751,13 @@ export const FR: Readonly<Record<string, string>> = {
   "fechar um diálogo aberto": "fermer une boîte de dialogue ouverte",
   "aprovar uma permissão": "valider une permission",
   "confiar nesta pasta": "faire confiance à ce dossier",
-
-  // shared/answers.ts
   "opção {0}": "option {0}",
-
-  // shared/daystats.ts
   "dia inválido: {0}": "jour invalide : {0}",
-
-  // shared/demo/daystats.ts
   "escolher uma opção": "choisir une option",
   "aprovar o plano": "valider le plan",
   "aprovar um comando": "valider une commande",
-
-  // shared/demo/github.ts
   "Testes": "Tests",
   "Lint e tipos": "Lint et types",
-
-  // shared/demo/permission.ts
   "Onde guardo o cache das sessões de login?": "Où je stocke le cache des sessions de connexion ?",
   "Rápido, e já roda no docker-compose do projeto": "Rapide, et il tourne déjà dans le docker-compose du projet",
   "Uma tabela a mais no banco que já existe": "Une table de plus dans la base existante",
@@ -1965,8 +1783,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Confirmação do pedido": "Confirmation de commande",
   "Resuma como tratar erros de rede com fetch": "Résume comment gérer les erreurs réseau avec fetch",
   "Acesso à rede: {0}": "Accès au réseau : {0}",
-
-  // shared/demo/simulator.ts
   "Cria a página de checkout com resumo do pedido": "Crée la page de paiement avec le récapitulatif de commande",
   "O total do carrinho não atualiza ao remover item": "Le total du panier ne se met pas à jour quand on retire un article",
   "Adiciona cupom de desconto no checkout": "Ajoute un code promo au paiement",
@@ -2050,8 +1866,6 @@ export const FR: Readonly<Record<string, string>> = {
   "⏳ {0} está esperando o shell em {1}: {2}": "⏳ {0} attend le shell dans {1} : {2}",
   "✅ {0}: shell terminou em {1} — {2}": "✅ {0} : shell terminé dans {1} — {2}",
   "❌ {0}: shell falhou em {1} — {2}": "❌ {0} : shell en échec dans {1} — {2}",
-
-  // shared/demo/terminal.ts
   "Antes de mexer, vale entender como esse fluxo está montado hoje.": "Avant de toucher à quoi que ce soit, il vaut mieux comprendre comment ce flux est construit aujourd'hui.",
   "O mais seguro é cobrir com um teste primeiro e depois ajustar o código.": "Le plus sûr est d'écrire un test d'abord, puis d'ajuster le code.",
   "Acho que o problema está no cálculo; vou conferir quem chama essa função.": "Je pense que le problème vient du calcul ; je vais vérifier qui appelle cette fonction.",
@@ -2095,8 +1909,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Turno concluído em {0}": "Tour terminé en {0}",
   "Conversa compactada automaticamente": "Conversation compactée automatiquement",
   "✓ Concluído": "✓ Terminé",
-
-  // shared/github.ts
   "{0} aberto!": "{0} ouverte !",
   "{0} mergeado!": "{0} mergée !",
   "Release {0} no ar!": "Release {0} en ligne !",
@@ -2124,11 +1936,7 @@ export const FR: Readonly<Record<string, string>> = {
   "✅ CI passou em {0}{1}": "✅ CI au vert dans {0}{1}",
   "CI passou: {0}": "CI au vert : {0}",
   "CI passou": "CI au vert",
-
-  // shared/messages.ts
   "Mensagem pelo Habblaud": "Message via Habblaud",
-
-  // client/src/ui/drawer.ts
   "interativo": "interactif",
   "ao vivo": "en direct",
   "em outro terminal": "dans un autre terminal",
@@ -2136,8 +1944,6 @@ export const FR: Readonly<Record<string, string>> = {
   "; \"Assumir daqui\" continua nela aqui": "; « Prendre le contrôle ici » la poursuit ici",
   "Abrir o terminal desta sessão, que roda aqui no Habblaud (T)": "Ouvrir le terminal de cette session, qui tourne ici dans Habblaud (T)",
   "Abrir o terminal: a sessão roda em outro terminal; dá para assumir daqui (T)": "Ouvrir le terminal : la session tourne dans un autre terminal ; vous pouvez en prendre le contrôle ici (T)",
-
-  // client/src/ui/pty.ts
   "Fechar a janela (a sessão continua rodando)": "Fermer la fenêtre (la session continue de tourner)",
   "terminal": "terminal",
   "Esta sessão está aberta em outro terminal": "Cette session est ouverte dans un autre terminal",
@@ -2149,26 +1955,17 @@ export const FR: Readonly<Record<string, string>> = {
   "retomando…": "reprise…",
   "iniciando…": "démarrage…",
   "saiu do escritório": "a quitté le bureau",
-
-  // client/src/ui/ptypane.ts
   "Claude Code encerrado (código {0})": "Claude Code terminé (code {0})",
   "Claude Code encerrado": "Claude Code terminé",
-
-  // client/src/ui/settings.ts
   "Tema do escritório": "Thème du bureau",
   "Natal": "Noël",
   "Halloween": "Halloween",
   "Automático: Halloween em outubro e Natal de 1º de novembro a 26 de dezembro; no resto do ano, o visual original. Nenhum: sempre o original.": "Automatique : Halloween en octobre et Noël du 1er novembre au 26 décembre ; le reste de l'année, l'apparence d'origine. Aucun : toujours l'original.",
-  "Os textos das atividades vêm do servidor: seguem HABBLAUD_LANG ou o idioma do sistema onde o Habblaud roda (o inglês, só com HABBLAUD_LANG=en).": "Les textes d'activité viennent du serveur : ils suivent HABBLAUD_LANG ou la langue du système où tourne Habblaud (l'anglais, seulement avec HABBLAUD_LANG=en).",
   "Aparência": "Apparence",
-
-  // client/src/ui/sidebar.ts
   "Fechar o terminal": "Fermer le terminal",
   "Abrir o terminal de {0} ({1})": "Ouvrir le terminal de {0} ({1})",
   "Fechar o terminal de {0}": "Fermer le terminal de {0}",
   "Abrir o terminal de {0}": "Ouvrir le terminal de {0}",
-
-  // client/src/ui/termactions.ts
   "Encerra a sessão no terminal onde ela está e continua a mesma conversa aqui, podendo digitar": "Termine la session dans le terminal où elle tourne et poursuit la même conversation ici, en pouvant taper",
   "Encerra esta sessão do Claude Code (a conversa fica salva)": "Termine cette session Claude Code (la conversation est conservée)",
   "Confirmar?": "Confirmer ?",
@@ -2176,8 +1973,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Encerrar": "Fermer",
   "Encerrando…": "Fermeture…",
   "Assumindo…": "Prise de contrôle…",
-
-  // client/src/ui/termtabs.ts
   "Agentes do projeto (arraste para reordenar)": "Agents du projet (glissez pour réorganiser)",
   "Encerrar esta sessão": "Fermer cette session",
   "encerrar?": "fermer ?",
@@ -2185,21 +1980,13 @@ export const FR: Readonly<Record<string, string>> = {
   " (interativo)": " (interactif)",
   "{0}: sessão encerrada.": "{0} : session terminée.",
   "Não deu para encerrar: {0}": "Impossible de fermer : {0}",
-
-  // client/src/world/social/social.ts
   "futebol": "le foot",
   "novela": "une série",
   "desenho": "des dessins animés",
-
-  // server/http/app.ts
   "terminal interativo desligado (veja o log do servidor)": "terminal interactif désactivé (voir le journal du serveur)",
-
-  // server/http/pty.ts
   "o terminal interativo só pode ser usado no próprio computador": "le terminal interactif ne peut être utilisé que sur l'ordinateur lui-même",
   "abra o Habblaud por http://localhost para usar o terminal interativo": "ouvrez Habblaud via http://localhost pour utiliser le terminal interactif",
   "origem não permitida para o terminal interativo": "origine non autorisée pour le terminal interactif",
-
-  // server/index.ts
   "desligado por HABBLAUD_PTY={0}": "désactivé par HABBLAUD_PTY={0}",
   "desligado (ligue com HABBLAUD_PTY=1)": "désactivé (activez-le avec HABBLAUD_PTY=1)",
   "indisponível no Docker (rode com npm start)": "indisponible dans Docker (lancez avec npm start)",
@@ -2210,11 +1997,7 @@ export const FR: Readonly<Record<string, string>> = {
   "Terminal interativo sem a tela completa ({0}): ao reconectar, modos como a colagem entre colchetes podem se perder.": "Terminal interactif sans l'écran complet ({0}) : à la reconnexion, des modes comme le collage entre crochets peuvent être perdus.",
   "   Terminal interativo: ligado ({0}).": "   Terminal interactif : activé ({0}).",
   "   Terminal interativo: {0}.": "   Terminal interactif : {0}.",
-
-  // server/messages/registry.ts
   "a conversa do agente mudou (/clear ou /resume) antes da entrega": "la conversation de l'agent a changé (/clear ou /resume) avant la remise",
-
-  // server/pty/manager.ts
   "indisponível": "indisponible",
   "não consegui encerrar a sessão: {0}": "impossible de fermer la session : {0}",
   "Agente {0} encerrado pelo escritório.": "Agent {0} fermé depuis le bureau.",
@@ -2247,31 +2030,17 @@ export const FR: Readonly<Record<string, string>> = {
   "node-pty sem spawn()": "node-pty sans spawn()",
   "node-pty não consegue abrir terminais ({0})": "node-pty ne parvient pas à ouvrir de terminaux ({0})",
   "node-pty abriu o terminal de teste, mas ele saiu com o código {0}": "node-pty a ouvert le terminal de test, mais il s'est fermé avec le code {0}",
-
-  // server/pty/screen.ts
   "@xterm/headless sem Terminal ou SerializeAddon": "@xterm/headless sans Terminal ni SerializeAddon",
   "@xterm/headless não instalado ({0})": "@xterm/headless non installé ({0})",
-
-  // server/pty/winkill.ts
   "pid inválido": "pid invalide",
   "início do processo desconhecido": "démarrage du processus inconnu",
   "o processo não é mais aquela sessão": "le processus n'est plus cette session",
-
-  // server/sources/tail.ts
   "Linha com mais de {0} MiB em {1} foi ignorada até a próxima quebra.": "Ligne de plus de {0} Mio dans {1} ignorée jusqu'au prochain saut de ligne.",
-
-  // server/sources/watcher.ts
   "Linha do transcript de {0} ignorada: {1}": "Ligne du transcript de {0} ignorée : {1}",
-
-  // scripts/statusline-install.ts
   "o arquivo mudou desde a leitura; nada foi alterado, rode o comando de novo": "le fichier a changé depuis la lecture ; rien n'a été modifié, relancez la commande",
-
-  // client/src/ui/drawer.ts e daystats.ts (textos do terminal interativo e do Meu dia)
   "Nova sessão": "Nouvelle session",
   "Abre um Claude Code novo nesta pasta, num terminal interativo": "Ouvre un nouveau Claude Code dans ce dossier, dans un terminal interactif",
   "em {0}": "dans {0}",
-
-  // client/src/ui/deliveries.ts
   "1 passo": "1 étape",
   "{0} passos": "{0} étapes",
   "1 arquivo alterado": "1 fichier modifié",
@@ -2307,8 +2076,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Não deu para abrir este anexo (o arquivo mudou de lugar ou o computador não respondeu).": "Impossible d'ouvrir cette pièce jointe (le fichier a été déplacé ou l'ordinateur n'a pas répondu).",
   "{0} entregou": "{0} a livré",
   "Um agente entregou": "Un agent a livré",
-
-  // client/src/ui/dictation.ts
   "Ditado em português: confira o texto.": "Dictée en portugais : vérifiez le texte.",
   "Ditado em inglês: confira o texto.": "Dictée en anglais : vérifiez le texte.",
   "Ditado em espanhol: confira o texto.": "Dictée en espagnol : vérifiez le texte.",
@@ -2331,14 +2098,8 @@ export const FR: Readonly<Record<string, string>> = {
   "Parar o ditado": "Arrêter la dictée",
   "Transcrevendo": "Transcription en cours",
   "Transcrevendo…": "Transcription…",
-
-  // client/src/ui/drawer.ts
   "O terminal não está liberado no acesso remoto (HABBLAUD_REMOTE_ALLOW).": "Le terminal n'est pas autorisé en accès à distance (HABBLAUD_REMOTE_ALLOW).",
-
-  // client/src/ui/settings.ts
   "Não foi possível sair: sem resposta do servidor.": "Impossible de se déconnecter : pas de réponse du serveur.",
-
-  // client/src/ui/spawn.ts
   "não deu para ler o arquivo": "impossible de lire le fichier",
   "Projetos recentes": "Projets récents",
   "+ Outra pasta": "+ Autre dossier",
@@ -2365,32 +2126,20 @@ export const FR: Readonly<Record<string, string>> = {
   "Agente novo aberto no app do Claude.": "Nouvel agent ouvert dans l'app Claude.",
   "Não abriu: {0}": "Échec de l'ouverture : {0}",
   "O computador não confirmou a abertura.": "L'ordinateur n'a pas confirmé l'ouverture.",
-
-  // client/src/ui/terminal.ts
   "{0} · responda no Codex: este pedido não chegou ao Habblaud ou passou do tempo de espera": "{0} · répondez dans Codex : cette demande n'est pas arrivée à Habblaud ou a dépassé le délai d'attente",
   "{0} · responda no Claude Code: este pedido não chegou ao Habblaud ou passou do tempo de espera": "{0} · répondez dans Claude Code : cette demande n'est pas arrivée à Habblaud ou a dépassé le délai d'attente",
-
-  // client/src/ui/topbar.ts
   "Novo agente: começa uma sessão do Claude Code no computador": "Nouvel agent : lance une session Claude Code sur l'ordinateur",
-
-  // server/deliveries/deliveries.ts
   "Tela capturada pelo agente": "Capture d'écran prise par l'agent",
-
-  // server/deliveries/fetcher.ts
   "arquivo não encontrado": "fichier introuvable",
   "o auxiliar do computador (npm run codex:bridge) não está rodando": "l'auxiliaire de l'ordinateur (npm run codex:bridge) ne tourne pas",
   "arquivos demais sendo buscados: tente de novo": "trop de fichiers en cours de récupération : réessayez",
   "o computador não leu o arquivo": "l'ordinateur n'a pas pu lire le fichier",
   "arquivo ilegível": "fichier illisible",
-
-  // server/deliveries/files.ts
   "caminho inválido": "chemin invalide",
   "tipo de arquivo que não se mostra aqui": "type de fichier qui ne s'affiche pas ici",
   "arquivo protegido": "fichier protégé",
   "não é um arquivo": "ce n'est pas un fichier",
   "arquivo grande demais para ver aqui": "fichier trop volumineux pour être affiché ici",
-
-  // server/dictation/dictation.ts
   "formato de áudio desconhecido": "format audio inconnu",
   "áudio ilegível": "audio illisible",
   "gravação curta demais": "enregistrement trop court",
@@ -2402,14 +2151,10 @@ export const FR: Readonly<Record<string, string>> = {
   "o Whisper falhou": "Whisper a échoué",
   "o auxiliar do computador não buscou o áudio": "l'auxiliaire de l'ordinateur n'a pas récupéré l'audio",
   "a transcrição demorou demais": "la transcription a pris trop de temps",
-
-  // server/dictation/whisper.ts
   "um modelo multilíngue do Whisper (ggml-small.bin ou ggml-base.bin em ~/.local/share/whisper)": "un modèle multilingue de Whisper (ggml-small.bin ou ggml-base.bin dans ~/.local/share/whisper)",
   "falhou": "échec",
   "não deu para ler o áudio ({0})": "impossible de lire l'audio ({0})",
   "o Whisper falhou ({0})": "Whisper a échoué ({0})",
-
-  // server/http/app.ts
   "não liberado no acesso remoto (veja HABBLAUD_REMOTE_ALLOW)": "non autorisé en accès à distance (voir HABBLAUD_REMOTE_ALLOW)",
   "esperado {enabled: boolean}": "attendu {enabled: boolean}",
   "rota só do próprio computador (hooks, plugins e o auxiliar do host)": "route réservée à l'ordinateur lui-même (hooks, plugins et l'auxiliaire de l'hôte)",
@@ -2425,8 +2170,6 @@ export const FR: Readonly<Record<string, string>> = {
   "arquivos desligados": "fichiers désactivés",
   "só o auxiliar do próprio computador": "uniquement l'auxiliaire de l'ordinateur lui-même",
   "esperado {id, name}": "attendu {id, name}",
-
-  // server/http/remote.ts
   "acesso remoto desligado: senha em texto puro (HABBLAUD_REMOTE_PASSWORD) não é aceita; rode npm run remote:setup": "accès à distance désactivé : un mot de passe en clair (HABBLAUD_REMOTE_PASSWORD) n'est pas accepté ; lancez npm run remote:setup",
   "acesso remoto desligado: faltam HABBLAUD_REMOTE_USER e HABBLAUD_REMOTE_PASSWORD_HASH; rode npm run remote:setup": "accès à distance désactivé : HABBLAUD_REMOTE_USER et HABBLAUD_REMOTE_PASSWORD_HASH manquent ; lancez npm run remote:setup",
   "acesso remoto desligado: HABBLAUD_REMOTE_PASSWORD_HASH inválido; rode npm run remote:setup": "accès à distance désactivé : HABBLAUD_REMOTE_PASSWORD_HASH invalide ; lancez npm run remote:setup",
@@ -2449,8 +2192,6 @@ export const FR: Readonly<Record<string, string>> = {
   "   Acesso remoto: certificado recarregado.": "   Accès à distance : certificat rechargé.",
   "   Acesso remoto: certificado novo ilegível, mantendo o anterior ({0}).": "   Accès à distance : nouveau certificat illisible, le précédent est conservé ({0}).",
   "Use https://": "Utilisez https://",
-
-  // server/index.ts
   "Erro ao responder (remoto) {0} {1}: {2}": "Erreur en répondant (à distance) à {0} {1} : {2}",
   "só ver": "consultation seule",
   "publicada pelo HABBLAUD_REMOTE_BIND": "publié via HABBLAUD_REMOTE_BIND",
@@ -2463,8 +2204,6 @@ export const FR: Readonly<Record<string, string>> = {
   "   Novo agente: ligado, pelo auxiliar do host (deixe npm run codex:bridge rodando no computador).": "   Nouvel agent : activé, via l'auxiliaire de l'hôte (laissez tourner npm run codex:bridge sur l'ordinateur).",
   "   Novo agente: ligado ({0} --bg; pasta ainda não confiável abre no app do Claude).": "   Nouvel agent : activé ({0} --bg ; un dossier pas encore approuvé s'ouvre dans l'app Claude).",
   "   Novo agente: ligado, só pelo app do Claude (claude não encontrado no PATH).": "   Nouvel agent : activé, uniquement via l'app Claude (claude introuvable dans le PATH).",
-
-  // server/remote/tls.ts
   "certificado do servidor ainda não existe": "le certificat du serveur n'existe pas encore",
   "a CA local não existe": "la CA locale n'existe pas",
   "certificado ilegível": "certificat illisible",
@@ -2476,8 +2215,6 @@ export const FR: Readonly<Record<string, string>> = {
   "a CA local não existe: rode npm run remote:setup": "la CA locale n'existe pas : lancez npm run remote:setup",
   "a CA local não cobre {0}: rode npm run remote:setup (ele cria uma CA nova)": "la CA locale ne couvre pas {0} : lancez npm run remote:setup (il crée une nouvelle CA)",
   "CA nova": "nouvelle CA",
-
-  // server/spawn/attachments.ts
   "arquivo vazio": "fichier vide",
   "arquivo ilegível (base64)": "fichier illisible (base64)",
   "o arquivo passa de {0} MB": "le fichier dépasse {0} Mo",
@@ -2487,8 +2224,6 @@ export const FR: Readonly<Record<string, string>> = {
   "um anexo expirou: anexe de novo": "une pièce jointe a expiré : joignez-la à nouveau",
   "Anexo enviado pelo Habblaud (leia antes de começar):": "Pièce jointe envoyée par Habblaud (lisez-la avant de commencer) :",
   "Anexos enviados pelo Habblaud (leia antes de começar):": "Pièces jointes envoyées par Habblaud (lisez-les avant de commencer) :",
-
-  // server/spawn/spawn.ts
   "escolha uma pasta (caminho absoluto, ex.: /Users/voce/projeto)": "choisissez un dossier (chemin absolu, ex. : /Users/vous/projet)",
   "o pedido passa de {0} caracteres": "la demande dépasse {0} caractères",
   "o claude não começou a sessão": "claude n'a pas démarré la session",
@@ -2503,8 +2238,6 @@ export const FR: Readonly<Record<string, string>> = {
   "não deu para gravar os anexos ({0})": "impossible d'enregistrer les pièces jointes ({0})",
   "o auxiliar do computador não buscou o pedido": "l'auxiliaire de l'ordinateur n'a pas récupéré la demande",
   "o auxiliar do computador não confirmou": "l'auxiliaire de l'ordinateur n'a pas confirmé",
-
-  // scripts/codex-bridge.ts
   "Uso: npm run codex:bridge [-- opções]\n\nEntrega as mensagens do escritório às sessões do Codex quando o Habblaud roda no Docker (deixe rodando no computador).\n\nOpções:\n  --port <n>   porta do Habblaud (padrão: HABBLAUD_PORT ou {0})\n  --once       faz uma rodada só e sai\n  -h, --help   mostra esta ajuda\n\nBinário do Codex: HABBLAUD_CODEX_BIN ou `codex` do PATH.": "Usage : npm run codex:bridge [-- options]\n\nRemet les messages du bureau aux sessions Codex quand Habblaud tourne dans Docker (laissez-le tourner sur l'ordinateur).\n\nOptions :\n  --port <n>   port de Habblaud (par défaut : HABBLAUD_PORT ou {0})\n  --once       fait un seul passage et quitte\n  -h, --help   affiche cette aide\n\nBinaire Codex : HABBLAUD_CODEX_BIN ou `codex` du PATH.",
   "anexo ilegível": "pièce jointe illisible",
   "anexo vazio ou grande demais": "pièce jointe vide ou trop volumineuse",
@@ -2531,25 +2264,17 @@ export const FR: Readonly<Record<string, string>> = {
   "Ditado desligado: falta {0}.": "Dictée désactivée : il manque {0}.",
   "Ditado: Whisper local ({0}), idiomas {1} detectados sozinhos.": "Dictée : Whisper local ({0}), langues {1} détectées automatiquement.",
   "conectado ao Habblaud.": "connecté à Habblaud.",
-
-  // scripts/docker-up.ts
   "acesso remoto configurado, mas sem a CA local: rode npm run remote:setup.": "accès à distance configuré, mais sans la CA locale : lancez npm run remote:setup.",
   "Acesso remoto: certificado do servidor renovado ({0}).": "Accès à distance : certificat du serveur renouvelé ({0}).",
   "Acesso remoto: monta {0} em {1}, somente leitura.": "Accès à distance : monte {0} sur {1}, en lecture seule.",
   "acesso remoto: não consegui conferir o certificado ({0}).": "accès à distance : impossible de vérifier le certificat ({0}).",
   "Acesso remoto: publica {0} (porta {1} do container).": "Accès à distance : publie {0} (port {1} du conteneur).",
-
-  // scripts/hooks-install.ts
   "--timeout precisa de um número de segundos entre 5 e 86400 (24 h).": "--timeout attend un nombre de secondes entre 5 et 86400 (24 h).",
-
-  // scripts/remote-mdns.ts
   "[remote-mdns] sem HABBLAUD_REMOTE_NAME válido no .env: rode npm run remote:setup.": "[remote-mdns] pas de HABBLAUD_REMOTE_NAME valide dans le .env : lancez npm run remote:setup.",
   "[remote-mdns] sem rede: anúncio suspenso.": "[remote-mdns] pas de réseau : annonce suspendue.",
   "[remote-mdns] {0} sem suporte: use o IP ou um endereço no DNS do roteador.": "[remote-mdns] {0} non pris en charge : utilisez l'IP ou une adresse dans le DNS du routeur.",
   "[remote-mdns] não deu para rodar {0}: {1}": "[remote-mdns] impossible de lancer {0} : {1}",
   "[remote-mdns] anunciando {0}.local -> {1}": "[remote-mdns] annonce de {0}.local -> {1}",
-
-  // scripts/remote-setup.ts
   "Uso: npm run remote:setup [-- opções]\n\nLiga o acesso pelo celular (https://<nome>.local) com usuário, senha e HTTPS.\n\n  --user <nome>        usuário do login (padrão: o seu usuário do sistema)\n  --name <nome>        endereço <nome>.local (padrão: habblaud)\n  --domain <endereço>  endereço próprio, ex.: meuclaude.home (precisa de uma entrada no DNS do roteador)\n  --port <n>           porta no computador (padrão: 443 se estiver livre, senão 4748)\n  --allow <lista>      o que o celular pode fazer: permissions, messages, terminal, spawn, none (padrão: permissions)\n  --password-stdin     lê a senha da entrada padrão (automação), em vez de perguntar\n  --no-service         não instala o serviço do anúncio <nome>.local (rode npm run remote:mdns você mesmo)\n  --off                desliga o acesso pelo celular (tira as linhas do .env e o serviço; mantém a CA)": "Usage : npm run remote:setup [-- options]\n\nActive l'accès depuis le téléphone (https://<nom>.local) avec nom d'utilisateur, mot de passe et HTTPS.\n\n  --user <nom>         nom d'utilisateur de connexion (par défaut : votre nom d'utilisateur système)\n  --name <nom>         adresse <nom>.local (par défaut : habblaud)\n  --domain <adresse>   adresse personnalisée, ex. : monclaude.home (nécessite une entrée dans le DNS du routeur)\n  --port <n>           port sur l'ordinateur (par défaut : 443 s'il est libre, sinon 4748)\n  --allow <liste>      ce que le téléphone peut faire : permissions, messages, terminal, spawn, none (par défaut : permissions)\n  --password-stdin     lit le mot de passe sur l'entrée standard (automatisation) au lieu de le demander\n  --no-service         n'installe pas le service d'annonce de <nom>.local (lancez npm run remote:mdns vous-même)\n  --off                désactive l'accès depuis le téléphone (retire les lignes du .env et le service ; garde la CA)",
   "falta o valor de {0}": "valeur manquante pour {0}",
   "opção desconhecida: {0}": "option inconnue : {0}",
@@ -2593,19 +2318,13 @@ export const FR: Readonly<Record<string, string>> = {
   "  Impressão digital da CA (confira no celular antes de confiar):": "  Empreinte de la CA (vérifiez-la sur le téléphone avant de lui faire confiance) :",
   "(indisponível)": "(indisponible)",
   "[remote-setup] Erro: {0}": "[remote-setup] Erreur : {0}",
-
-  // client/src/ui/settings.ts
   "Sair": "Se déconnecter",
   "Acesso pelo celular": "Accès depuis le téléphone",
   "Sair deste aparelho": "Se déconnecter de cet appareil",
   "Encerra o login aqui (uma cópia do cookie também deixa de valer). Para voltar, entre com usuário e senha.": "Met fin à la connexion ici (une copie du cookie cesse aussi de fonctionner). Pour revenir, connectez-vous avec votre nom d'utilisateur et votre mot de passe.",
-
-  // client/src/art/character/appearance.ts
   "Não combina com este cabelo": "Ne va pas avec cette coiffure",
   "Não combina com o boné ou o gorro": "Ne va pas avec la casquette ou le bonnet",
   "Não combina com o laço": "Ne va pas avec le nœud",
-
-  // shared/world/intro.ts
   "Codo de madrugada": "Je code la nuit",
   "Acordo cedo para codar": "Je me lève tôt pour coder",
   "Movido a café": "Carburant : café",
@@ -2626,8 +2345,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Vivo de código aberto": "Open source avant tout",
   "Sempre aprendendo": "Toujours en train d'apprendre",
   "Oi, prazer!": "Salut, quel plaisir !",
-
-  // server/config.ts, server/index.ts, server/http/app.ts e server/world/ (Habblaud World)
   "HABBLAUD_WORLD_URL não é um endereço válido": "HABBLAUD_WORLD_URL n'est pas une adresse valide",
   "HABBLAUD_WORLD_URL com http:// (127.0.0.1 ou host.docker.internal) só vale no modo de desenvolvimento (--dev ou HABBLAUD_WORLD_DEV=1)": "HABBLAUD_WORLD_URL avec http:// (127.0.0.1 ou host.docker.internal) ne vaut qu'en mode développement (--dev ou HABBLAUD_WORLD_DEV=1)",
   "HABBLAUD_WORLD_URL precisa começar com https:// ou wss://": "HABBLAUD_WORLD_URL doit commencer par https:// ou wss://",
@@ -2654,8 +2371,6 @@ export const FR: Readonly<Record<string, string>> = {
   "world.json fora do formato: ignorado (entre de novo no Habblaud World).": "world.json mal formé : ignoré (reconnectez-vous à Habblaud World).",
   "world.json ilegível ({0}): ignorado (entre de novo no Habblaud World).": "world.json illisible ({0}) : ignoré (reconnectez-vous à Habblaud World).",
   "Não foi possível gravar {0} ({1}); a sessão do Habblaud World vale só nesta execução.": "Impossible d'écrire {0} ({1}) ; la session Habblaud World ne vaut que pour cette exécution.",
-
-  // client/src/ui/world/world-popups.ts
   "Novidade: Habblaud World": "Nouveau : Habblaud World",
   "Seu escritório agora pode virar um prédio numa cidade online, aceso enquanto os seus agentes trabalham.": "Votre bureau peut désormais devenir un immeuble dans une ville en ligne, éclairé pendant que vos agents travaillent.",
   "Seu escritório vira um prédio numa cidade em pixel art, aceso enquanto os seus agentes trabalham.": "Votre bureau devient un immeuble dans une ville en pixel art, éclairé pendant que vos agents travaillent.",
@@ -2672,8 +2387,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Enquanto isso, o Habblaud continua normal e nada do escritório é enviado.": "En attendant, Habblaud fonctionne normalement et rien du bureau n'est envoyé.",
   "Entendi": "Compris",
   "Chegou a sua vez: crie o seu personagem e entre na cidade.": "C'est votre tour : créez votre personnage et entrez dans la ville.",
-
-  // client/src/ui/world/settings-world.ts
   "← Voltar": "← Retour",
   "Mostrar senha": "Afficher le mot de passe",
   "Esconder senha": "Masquer le mot de passe",
@@ -2802,8 +2515,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Revogar": "Révoquer",
   "Revogar {0}": "Révoquer {0}",
   "Confirmar": "Confirmer",
-
-  // client/src/ui/world/world-model.ts
   "A senha precisa ter pelo menos 12 caracteres.": "Le mot de passe doit comporter au moins 12 caractères.",
   "A senha pode ter no máximo 128 caracteres.": "Le mot de passe peut comporter au plus 128 caractères.",
   "A senha não pode ser o seu e-mail.": "Le mot de passe ne peut pas être votre e-mail.",
@@ -2917,8 +2628,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Não foi possível gravar {0} ({1}).": "Impossible d'écrire {0} ({1}).",
   "esperado {theme: \"auto\", \"none\", \"halloween\" ou \"christmas\"}": "attendu {theme : \"auto\", \"none\", \"halloween\" ou \"christmas\"}",
   "Habblaud World: o servidor do mundo não confirmou a pausa ou a retomada do prédio ({0}).": "Habblaud World : le serveur du monde n'a pas confirmé la pause ou la reprise de l'immeuble ({0}).",
-
-  // client/src/ui/world/ (Fase 2: cartão "Seu prédio", "Ver o que foi enviado", tema e chip do topo)
   "Seu prédio": "Votre immeuble",
   "Seu prédio agora": "Votre immeuble maintenant",
   "Sem personagem": "Sans personnage",
@@ -2994,15 +2703,12 @@ export const FR: Readonly<Record<string, string>> = {
   "Você saiu do mundo: o prédio foi retirado e o lote, liberado. Dá para andar pela cidade; nada do escritório sai deste computador.": "Vous avez quitté le monde : l'immeuble a été retiré et la parcelle libérée. Vous pouvez vous promener dans la ville ; rien du bureau ne quitte cet ordinateur.",
   "Voltar ao mundo": "Revenir dans le monde",
   "Voltar cria um prédio novo, em outro lote; a conta e o personagem são os mesmos.": "Revenir crée un nouvel immeuble, sur une autre parcelle ; le compte et le personnage restent les mêmes.",
-
-  // Habblaud World, Fase 3: a cena Mundo (stream, comandos, avisos e a volta ao mundo)
   "A cidade já está aberta em outras abas do Habblaud. Feche uma delas para abrir aqui.": "La ville est déjà ouverte dans d'autres onglets de Habblaud. Fermez-en un pour l'ouvrir ici.",
   "A cena Mundo perdeu a conexão com o Habblaud. Abra a cidade de novo.": "La scène Monde a perdu la connexion avec Habblaud. Rouvrez la ville.",
   "A conta saiu do mundo (por este ou por outro computador): nada mais sai até você voltar ao mundo.": "Le compte a quitté le monde (depuis cet ordinateur ou un autre) : plus rien n'est envoyé tant que vous ne revenez pas dans le monde.",
   "a cena Mundo só abre pela própria página do Habblaud": "la scène Monde ne s'ouvre que depuis la page de Habblaud elle-même",
   "Habblaud World: a conta saiu do mundo; o prédio só volta com \"Voltar ao mundo\".": "Habblaud World : le compte a quitté le monde ; l'immeuble ne revient qu'avec « Revenir dans le monde ».",
   "Habblaud World: o servidor do mundo não confirmou a volta ao mundo ({0}).": "Habblaud World : le serveur du monde n'a pas confirmé le retour dans le monde ({0}).",
-  // client/src/world/city (cidade do Habblaud World) e client/src/ui/world/scene-switch.ts
   "Você está na cidade do Habblaud World. Esc volta ao escritório.": "Vous êtes dans la ville de Habblaud World. Échap revient au bureau.",
   "De volta ao escritório.": "De retour au bureau.",
   "Mundo": "Monde",
@@ -3128,9 +2834,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Tem certeza? O prédio e o perfil saem do mundo assim que você digitar o código.": "Vous êtes sûr ? L'immeuble et le profil quittent le monde dès que vous saisissez le code.",
   "Um arquivo JSON com o que o Habblaud World guarda da sua conta: e-mail, datas, personagem, visibilidade, dispositivos, prédio, likes dados, bloqueios e denúncias feitas. Dá para baixar uma vez por dia.": "Un fichier JSON avec ce que Habblaud World garde de votre compte : e-mail, dates, personnage, visibilité, appareils, immeuble, likes donnés, blocages et signalements faits. Vous pouvez le télécharger une fois par jour.",
   "O pacote contradiz o anterior de um jeito que o Habblaud não produz: o mundo o descartou, e o prédio fica com o último aceito. As próximas remessas vão normalmente.": "Le paquet contredit le précédent d'une façon que Habblaud ne produit pas : le monde l'a écarté, et l'immeuble garde le dernier accepté. Les prochains envois partent normalement.",
-
-  // Fase 5 do Habblaud World (social leve)
-  // shared/world/social-labels.ts
   "Olá!": "Bonjour !",
   "Prédio bonito!": "Bel immeuble !",
   "Bora um café?": "Un café ?",
@@ -3162,11 +2865,9 @@ export const FR: Readonly<Record<string, string>> = {
   "até 100 milhões de tokens": "jusqu'à 100 millions de tokens",
   "mais de 100 milhões de tokens": "plus de 100 millions de tokens",
   "quase nada de tokens": "presque aucun token",
-  // server/world/social.ts
   "sem conexão com o servidor do mundo agora": "pas de connexion au serveur du monde pour le moment",
   "entre na conta do Habblaud World": "connectez-vous au compte Habblaud World",
   "esperado {playerId}": "{playerId} attendu",
-  // client/src/ui/world/away-summary.ts
   "1 visita": "1 visite",
   "{0} visitas": "{0} visites",
   "1 like": "1 j'aime",
@@ -3191,34 +2892,27 @@ export const FR: Readonly<Record<string, string>> = {
   "Ver o meu prédio": "Voir mon immeuble",
   "Alguém bateu na porta do seu prédio.": "Quelqu'un a frappé à la porte de votre immeuble.",
   "Bateram {0} vezes na porta do seu prédio.": "On a frappé {0} fois à la porte de votre immeuble.",
-  // client/src/ui/world/blocked.ts
   "Desbloquear": "Débloquer",
   "Desbloquear {0}": "Débloquer {0}",
   "{0} desbloqueado.": "{0} débloqué.",
   "Ninguém bloqueado.": "Personne de bloqué.",
   "Quem você bloqueia não te vê e você não vê a pessoa: na rua, nos prédios, nos cumprimentos e nos carimbos. Para bloquear alguém, abra o cartão da pessoa na cidade.": "Les personnes que vous bloquez ne vous voient pas et vous ne les voyez pas : dans la rue, dans les immeubles, dans les salutations et dans les tampons. Pour bloquer quelqu'un, ouvrez sa carte dans la ville.",
-  // client/src/ui/world/settings-world.ts
   "Avisar quando baterem na porta": "Me prévenir quand on frappe à la porte",
   "Quem estiver na porta do seu prédio pode bater; o aviso chega aqui no Habblaud, sem o nome de quem bateu.": "Quiconque est à la porte de votre immeuble peut frapper ; l'alerte arrive ici dans Habblaud, sans le nom de la personne.",
   "Bloqueados": "Bloqués",
-  // client/src/ui/world/world-model.ts
   "Sem conexão com o Habblaud World agora: desbloquear precisa do prédio aceso ou da cidade aberta.": "Pas de connexion à Habblaud World pour le moment : pour débloquer, il faut l'immeuble allumé ou la ville ouverte.",
-  // client/src/world/city/notice.ts
   "Limite do dia atingido: amanhã tem mais.": "Limite du jour atteinte : à demain.",
   "Você já fez isso hoje.": "Vous l'avez déjà fait aujourd'hui.",
   "Bloqueio feito: vocês deixam de se ver.": "Bloqué : vous ne vous voyez plus.",
   "Carimbo deixado na portaria.": "Tampon laissé à l'accueil.",
-  // client/src/world/city/greetings.ts
   "Cumprimentar": "Saluer",
   "Cumprimentos": "Salutations",
-  // client/src/world/city/fireworks.ts
   "Meta batida!": "Objectif atteint !",
   "{0} de {1} h": "{0} sur {1} h",
   "A cidade consumiu ≈ {0} esta semana": "La ville a consommé ≈ {0} cette semaine",
   "A soma aparece com 10 prédios ou mais.": "Le total apparaît à partir de 10 immeubles.",
   "1 prédio aceso agora": "1 immeuble allumé en ce moment",
   "{0} prédios acesos agora": "{0} immeubles allumés en ce moment",
-  // client/src/world/city/teleport.ts
   "Ir": "Aller",
   "Ir até a porta deste prédio": "Aller à la porte de cet immeuble",
   "Visitar um prédio aleatório": "Visiter un immeuble au hasard",
@@ -3226,7 +2920,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Ir para um prédio pelo código": "Aller à un immeuble avec son code",
   "Ir para": "Aller à",
   "O código tem o formato HB-XXXX (letras e números, sem 0, O, 1, I, L e U).": "Le code a le format HB-XXXX (lettres et chiffres, sans 0, O, 1, I, L ni U).",
-  // client/src/world/city/social.ts
   "Ações perto de você": "Actions à proximité",
   "Testar os fogos": "Tester le feu d'artifice",
   "curtir": "aimer",
@@ -3280,7 +2973,6 @@ export const FR: Readonly<Record<string, string>> = {
   "Vocês deixam de se ver: na rua, nos prédios, nos cumprimentos e nos carimbos.": "Vous ne vous voyez plus : dans la rue, dans les immeubles, dans les salutations et dans les tampons.",
   "Denunciado": "Signalé",
   "Denunciar": "Signaler",
-  // client/src/world/visit-social.ts
   "Escolha um carimbo para a portaria": "Choisissez un tampon pour l'accueil",
   "Um carimbo por prédio por dia. O dono vê quantos de cada recebeu, nunca quem deixou.": "Un tampon par immeuble et par jour. Le propriétaire voit combien il en a reçu de chaque, jamais qui les a laissés.",
   "Carimbo de hoje: {0}": "Tampon du jour : {0}",
@@ -3290,4 +2982,25 @@ export const FR: Readonly<Record<string, string>> = {
   "Carimbo deixado na portaria: {0}": "Tampon laissé à l'accueil : {0}",
   "Entre no prédio ou chegue mais perto da porta para carimbar.": "Entrez dans l'immeuble ou approchez-vous de la porte pour tamponner.",
   "O carimbo não foi deixado. Tente de novo.": "Le tampon n'a pas été laissé. Réessayez.",
+  "Os textos das atividades vêm do servidor: seguem HABBLAUD_LANG ou o idioma do sistema onde o Habblaud roda (neste fork o padrão é inglês).": "Les textes d'activité viennent du serveur : ils suivent HABBLAUD_LANG ou la langue du système où tourne Habblaud (ce fork utilise l'anglais par défaut).",
+  "Para mandar mensagens daqui: deixe o plugin Habblaud ativo no Cursor (npm run cursor:install e Developer: Reload Window)": "Pour envoyer des messages d'ici : gardez le plugin Habblaud actif dans Cursor (npm run cursor:install et Developer: Reload Window)",
+  "Para responder, use o chat do Cursor": "Pour répondre, utilisez le chat de Cursor",
+  "Entra no chat do Cursor no próximo stop do agente (se ele estiver ocioso, mande qualquer coisa no Cursor ou espere o próximo turno). Enter manda; Shift+Enter quebra a linha.": "Entre dans le chat de Cursor au prochain stop de l'agent (s'il est inactif, tapez quelque chose dans Cursor ou attendez le prochain tour). Entrée envoie ; Maj+Entrée passe à la ligne.",
+  "Na fila: entra no Cursor no próximo stop do agente…": "En file : entre dans Cursor au prochain stop de l'agent…",
+  "Entregue ✓ no chat do Cursor": "Livré ✓ dans le chat de Cursor",
+  "sem notícia da entrega: confira no chat do Cursor (a mensagem entra no próximo stop)": "aucune nouvelle de la livraison : vérifiez le chat de Cursor (le message entre au prochain stop)",
+  "Abra o Claude Code{0} ou o Cursor em qualquer projeto e veja seu agente chegar.": "Ouvrez Claude Code{0} ou Cursor dans n'importe quel projet et regardez votre agent arriver.",
+  "Abra o Claude Code{0}, o Codex ou o Cursor em qualquer projeto e veja seu agente chegar.": "Ouvrez Claude Code{0}, Codex ou Cursor dans n'importe quel projet et regardez votre agent arriver.",
+  "Eventos do Cursor: falha ao aplicar um evento ({0}).": "Événements Cursor : échec de l'application d'un événement ({0}).",
+  "eventos do Cursor só são aceitos pelo próprio computador (http://localhost ou http://127.0.0.1)": "les événements Cursor ne sont acceptés que depuis cet ordinateur (http://localhost ou http://127.0.0.1)",
+  "   Cursor: {0} projeto(s), {1} sessão(ões) aberta(s).": "   Cursor : {0} projet(s), {1} session(s) ouverte(s).",
+  "   Cursor: {0}.": "   Cursor : {0}.",
+  "nenhum projeto do Cursor encontrado": "aucun projet Cursor trouvé",
+  "desligado (HABBLAUD_CURSOR=0)": "désactivé (HABBLAUD_CURSOR=0)",
+  "   Mensagens pelo escritório: ligadas (Claude: npm run mod:install; Cursor: npm run cursor:install).": "   Messages depuis le bureau : activés (Claude : npm run mod:install ; Cursor : npm run cursor:install).",
+  "a sessão do Cursor não buscou a mensagem: o plugin Habblaud está ativo nesta janela? (Developer: Reload Window)": "la session Cursor n'a pas récupéré le message : le plugin Habblaud est-il actif dans cette fenêtre ? (Developer: Reload Window)",
+  "a sessão do Cursor não está no escritório (abra um agente no Cursor com o plugin Habblaud instalado)": "la session Cursor n'est pas dans le bureau (ouvrez un agent Cursor avec le plugin Habblaud installé)",
+  "Agente principal (Cursor)": "Agent principal (Cursor)",
+  "Cursor: falha no ciclo de leitura: {0}": "Cursor : échec du cycle de lecture : {0}",
+  "Cursor: evento de hook ignorado ({0}).": "Cursor : événement de hook ignoré ({0}).",
 };

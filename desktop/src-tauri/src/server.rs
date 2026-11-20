@@ -60,6 +60,7 @@ impl HabblaudServer {
       .current_dir(&root)
       .env("HABBLAUD_PORT", port.to_string())
       .env("HABBLAUD_HOST", DEFAULT_HOST)
+      .env("HABBLAUD_LANG", std::env::var("HABBLAUD_LANG").unwrap_or_else(|_| "en".into()))
       .stdin(Stdio::null())
       .stdout(Stdio::null())
       .stderr(Stdio::null());

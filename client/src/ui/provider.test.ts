@@ -88,7 +88,7 @@ describe('ferramenta (Claude Code ou Codex)', () => {
     expect(emptyOfficeHint([c, d, x])).toBe('Abra o Claude Code (atalhos c ou d) ou o Codex em qualquer projeto e veja seu agente chegar.');
     expect(emptyOfficeHint([x])).toBe('Abra o Claude Code ou o Codex em qualquer projeto e veja seu agente chegar.');
     expect(emptyOfficeHint([c, r])).toBe('Abra o Claude Code (atalho c) ou o Cursor em qualquer projeto e veja seu agente chegar.');
-    expect(emptyOfficeHint([c, x, r])).toBe('Abra o Claude Code (atalho c) ou o Codex ou o Cursor em qualquer projeto e veja seu agente chegar.');
+    expect(emptyOfficeHint([c, x, r])).toBe('Abra o Claude Code (atalho c), o Codex ou o Cursor em qualquer projeto e veja seu agente chegar.');
     expect(emptyOfficeHint([])).toBe('Abra o Claude Code em qualquer projeto e veja seu agente chegar.');
   });
 
